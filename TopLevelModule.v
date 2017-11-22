@@ -19,9 +19,11 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module TopLevelModule(
+			input CLK
     );
 	 
 	 wire [31:0] PCplus4;
+	 wire [31:0] PCplus8;
 	 wire [31:0] _PC;
 	 wire [31:0] PC;
 	 wire CLK;
@@ -29,6 +31,9 @@ module TopLevelModule(
 	 
 	 wire [3:0] A1;
 	 wire [3:0] A2;
+	 
+	 wire [31:0] RD1;
+	 wire [31:0] RD2;
 	 
 	 MUX_2 M_Sel_PC(
 		.SEL(0),
@@ -45,6 +50,11 @@ module TopLevelModule(
 		.OperA(4),
 		.OperB(PC),
 		.Result(PCplus4));
+	 
+	 Add adder_pc_8(
+		.OperA(4),
+		.OperB(PCplus4),
+		.Result(PCplus8));
 	
 	 MUX_2 M_Reg_1(
 		.SEL(0),
@@ -57,6 +67,17 @@ module TopLevelModule(
 		.IN_0(instruction[3:0]),
 		.IN_1(instruction[15:12]),
 		.DAT_OUT(A2));
+	
+	 RegiterFile bank_register(
+		.A1(A1),
+		.A2(A2),
+		.A3(instruction[15:12]),
+		.WD3(9),
+		.R15(PCplus8),
+		.WE3(1),
+		.RD1(RD1),
+		.RD2(RD2),
+		.CLK(CLK));
 	 
 	 
 		

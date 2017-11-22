@@ -34,14 +34,22 @@ module RegiterFile(
 	 reg [31:0] RD1 = 0;
 	 reg [31:0] RD2 = 0;
 	 
-	 always @(CLK)
+	 always @(posedge CLK)
 		begin
-			registers[15] = R15;
-			RD1 = registers[A1];
-			RD2 = registers[A2];
+			if(A1 == 15)
+				RD1 = R15;
+			else
+				RD1 = registers[A1];
+				
+			if(A2 == 15)
+				RD2 = R15;
+			else
+				RD2 = registers[A2];
+			
 		end
 	 always @(negedge CLK)
 		begin
+			registers[15] = R15;
 			if(WE3)
 				begin
 					registers[A3] = WD3;
