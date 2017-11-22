@@ -28,6 +28,60 @@ module ALU(
     output Carry,
     output Overflow
     );
+	 
+	 reg [31:0] Result = 0;
+	 reg [32:0] tmp = 0;
+	 reg Zero = 0;
+	 reg Negative = 0;
+	 reg Carry = 0;
+	 reg Overflow = 0;
+	 reg x = 0;
+	 reg y = 0;
 
+	always @*
+		begin
+			Zero = 0;
+			Negative = 0;
+			Carry = 0;
+			Overflow = 0;
+			case(ALU_Code)
+					2'b00 : tmp = OperA + OperB;
+					2'b01 : tmp = OperA - OperB;
+					2'b10 : Result = OperA & OperB;
+					2'b11 : Result = OperA | OperB;
+					default : Result = 0;
+				endcase
+			if(ALU_Code[1] == 0)
+				begin
+					Negative = tmp[31];
+					Carry = tmp[32];
+					Result = tmp[31:0];
+					x = OperA[31] & OperB[31];
+					y = OperB[31] & Result[31];
+					if(x)
+						begin
+							Overflow = 0;
+						end
+					else
+						begin
+							if(!y)
+								begin
+									Overflow = 0;
+								end
+							else
+								begin
+									Overflow = 1;
+								end
+						end
+				end
+			if(Result == 0)
+				begin
+					Zero = 1;
+				end
+			else
+				begin
+					Zero = 0;
+				end
+		end
 
 endmodule
