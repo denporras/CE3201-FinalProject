@@ -19,101 +19,64 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module TopLevelModule(
-		/*clk, 
-		rst,
-		btnu,
-		vsync,
-		hsync,
-		VGA_R,
-		VGA_G,
-		VGA_B,*/
-		CLK_K,	
-		PS2_CLK,	
-		PS2_DATA,
-		LED	
-);
-
-	//keyboard
-	input CLK_K;		//board clock signal
-	input PS2_CLK;		//keyboard clock signal
-	input PS2_DATA;		//keyboard data signal
-	output [7:0] LED;	//8 output LEDs
-		
-	/*input	clk; 
-	input rst;
-	input btnu;
-	output	vsync;
-	output	hsync;
-	output [2:0] VGA_R;
-	output [2:0] VGA_G;
-	output [1:0] VGA_B;
-	wire CLK;
-	wire ADDRESS;
-	wire DATA_IN;
-	wire DATA_OUT;
-	wire RE;
-	wire WE;
-	wire VCLK;
-	wire [9:0] HCOUNT;
-	wire [9:0] VCOUNT;
-	wire [7:0] FINAL_PIXEL;
-	wire [7:0] scene_pixel;*/
+			input CLK
+    );
+	 
+	 wire [31:0] PCplus4;
+	 wire [31:0] PCplus8;
+	 wire [31:0] _PC;
+	 wire [31:0] PC;
+	 wire CLK;
+	 wire [31:0] instruction;
+	 
+	 wire [3:0] A1;
+	 wire [3:0] A2;
+	 
+	 wire [31:0] RD1;
+	 wire [31:0] RD2;
+	 
+	 MUX_2 M_Sel_PC(
+		.SEL(0),
+		.IN_0(PCplus4),
+		.IN_1(255),
+		.DAT_OUT(_PC));
 	
+	 PC_Register PC_r(
+		._PC(_PC),
+		.CLK(CLK),
+		.PC(PC));
 	
+	 Add adder_pc_4(
+		.OperA(4),
+		.OperB(PC),
+		.Result(PCplus4));
+	 
+	 Add adder_pc_8(
+		.OperA(4),
+		.OperB(PCplus4),
+		.Result(PCplus8));
 	
-	Keyboard TestingKeyboard (
-							.CLK(CLK_K),
-							.PS2_CLK(PS2_CLK), 
-							.PS2_DATA(PS2_DATA),
-							.LED(LED)
-							);
+	 MUX_2 M_Reg_1(
+		.SEL(0),
+		.IN_0(instruction[19:16]),
+		.IN_1(15),
+		.DAT_OUT(A1));
+	 
+	 MUX_2 M_Reg_2(
+		.SEL(0),
+		.IN_0(instruction[3:0]),
+		.IN_1(instruction[15:12]),
+		.DAT_OUT(A2));
 	
-/*	
-vga_controller controller(
-	.clk(VCLK),
-	.final_pixel(FINAL_PIXEL),
-	.hcount(HCOUNT),
-	.vcount(VCOUNT),
-	.vsync(vsync),
-	.hsync(hsync),
-	.VGA_R(VGA_R),
-	.VGA_G(VGA_G),
-	.VGA_B(VGA_B)
-);
-
-ClkDiv_25MHz vgaclk(
-			 .CLK(clk),
-			 .RST(reset),
-			 .CLKOUT(VCLK)
-);
-
-draw_scene scene(
-			 .hcount(HCOUNT),
-			 .vcount(VCOUNT),
-			 .clk(VCLK),
-			 .pixel(scene_pixel)
-);
-
-VideoMemory vm(
-.clk(VCLK),	
-.hcount(HCOUNT),
-.vcount(VCOUNT),
-.data_in(scene_pixel), 
-.data_out(FINAL_PIXEL), 
-.re(1), 
-.we(1) 
-); 
-*/
-/**
-sp_ram_rw mem(
-.clk(CLK),
-.address(ADDRESS), 
-.data_in(DATA_IN), 
-.data_out(DATA_OUT),
-.re(RE), 
-.we(WE)        
-);
-*/	
-
+	 RegiterFile bank_register(
+		.A1(A1),
+		.A2(A2),
+		.A3(instruction[15:12]),
+		.WD3(9),
+		.R15(PCplus8),
+		.WE3(1),
+		.RD1(RD1),
+		.RD2(RD2),
+		.CLK(CLK));
 
 endmodule
