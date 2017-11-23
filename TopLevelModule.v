@@ -19,7 +19,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module TopLevelModule(
-			input CLK
+			input CLK,
+			output LED1,
+			output LED2,
+			output LED3,
+			output LED4,
+			inout PS2CLK,
+			inout PS2DAT
     );
 	 
 	 wire PCSrc;
@@ -49,6 +55,50 @@ module TopLevelModule(
 	 
 	 wire [31:0] SrcB;
 	 wire [31:0] alu_out;
+	 
+	 //Keyboard
+	 wire CLK_50;
+	 wire	[7:0]	received_data;
+	 wire		 	received_data_en;
+	 wire nc;
+	 
+	 Clk_50MHz clk50(
+		.CLK(CLK),
+		.RST(0),
+		.CLKOUT(CLK_50));
+		
+	PS2_Controller controller(// Inputs
+		.CLOCK_50(CLK_50),
+		.reset(0),
+		.the_command(0),
+		.send_command(0),
+
+		// Bidirectionals
+		.PS2_CLK(PS2CLK),					// PS2 Clock
+		.PS2_DAT(PS2DAT),					// PS2 Data
+
+		// Outputs
+		.command_was_sent(nc),
+		.error_communication_timed_out(nc),
+
+		.received_data(received_data),
+		.received_data_en(received_data_en)			// If 1 - new data has been received)
+
+	);
+
+	Keyboard_input kb(
+		.clk(CLK_50),
+		.received_data(received_data), 
+		.received_data_en(received_data_en), 
+		.led1(LED1),
+		.led2(LED2),
+		.led3(LED3),
+		.led4(LED4),
+		.ps2clk(PS2CLK),
+		.ps2data(PS2DAT)
+	);
+	
+	//End keyboard
 	 
 	 
 	 MUX_2 M_Sel_PC(
