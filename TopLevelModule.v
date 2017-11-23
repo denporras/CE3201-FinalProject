@@ -28,6 +28,8 @@ module TopLevelModule(
 	 wire [1:0] ALU_Code;
 	 wire [3:0] ALU_Flags;
 	 wire MemtoReg;
+	 wire readMemEnable;
+	 wire writeMemEnable;
 	 
 	 wire [31:0] PCplus4;
 	 wire [31:0] PCplus8;
@@ -50,6 +52,8 @@ module TopLevelModule(
 	 wire [31:0] SrcB;
 	 wire [31:0] alu_out;
 	 
+	 wire [31:0] ReadDataMem;
+	 
 	 
 	 MUX_2 M_Sel_PC(
 		.SEL(PCSrc),
@@ -61,6 +65,16 @@ module TopLevelModule(
 		._PC(_PC),
 		.CLK(CLK),
 		.PC(PC));
+	
+	 sp_ram_rw_instruction instruction_memory(
+		.clk(CLK),
+		.address(PC),
+		.data_in(2),//SEÑAL DE KEL
+		.data_out(instruction),
+		.re(1),
+		.we(0)//SEÑAL DE KEL
+		); 
+		
 	
 	 Add adder_pc_4(
 		.OperA(4),
@@ -90,7 +104,7 @@ module TopLevelModule(
 		.A3(instruction[15:12]),
 		.WD3(RegWrite),
 		.R15(PCplus8),
-		.WE3(1),
+		.WE3(WriteResult),
 		.RD1(RD1),
 		.RD2(RD2),
 		.CLK(CLK));
@@ -118,11 +132,21 @@ module TopLevelModule(
 		.Negative(ALU_Flags[3]),
 		.Carry(ALU_Flags[1]),
 		.Overflow(ALU_Flags[0]));
+		
+	
+	 sp_ram_rw data_memory(
+		 .clk(CLK),
+		.address(alu_out),
+		.data_in(RD2),
+		.data_out(ReadDataMem),
+		.re(1),
+		.we(0)
+		); 
 	
 	 MUX_2 write_select (
 		.SEL(MemtoReg),
 		.IN_0(alu_out),
-		.IN_1(Imme_31_BShift),
+		.IN_1(ReadDataMem),
 		.DAT_OUT(WriteResult));
 	
 	 

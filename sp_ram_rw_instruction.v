@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    10:53:10 11/20/2017 
+// Create Date:    13:03:01 11/23/2017 
 // Design Name: 
-// Module Name:    sp_ram_rw 
+// Module Name:    sp_ram_rw_instruction 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,8 +18,8 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module sp_ram_rw(
-clk		,	// clock
+module sp_ram_rw_instruction(
+  clk		,	// clock
 address , // address Input
 data_in    , // data in
 data_out    , // data out
@@ -29,7 +29,7 @@ we       // write enable
 
 parameter DATA_WIDTH = 32;
 parameter ADDR_WIDTH = 32;
-parameter RAM_DEPTH = 256;
+parameter RAM_DEPTH = 16;
 
 //--------------Input Ports----------------------- 
 input clk;
@@ -63,7 +63,7 @@ end
 always @ (posedge clk)
 begin : MEM_READ
   if (re) begin
-    data_out <= mem[address]; 
+    data_out <= mem[address/4]; 
   end else begin
     data_out <= 0; 
   end
