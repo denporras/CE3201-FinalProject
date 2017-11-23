@@ -36,6 +36,7 @@ reg led3;
 reg led4;
 
 reg [7:0]	last_data_received;
+reg [7:0]	output_key;
 
 initial begin
 	led1 = 1;
@@ -54,34 +55,123 @@ end
 		end
 		if(received_data != last_data_received) begin
 			 case(last_data_received)
-				8'h15: led1 = !led1;
-				8'h1d: led2 = !led2;
-				8'h24: led3 = !led3;
-				8'h2d: led4 = !led4;
-				8'h2c: led1 = !led1;
-				8'h35: led2 = !led2;
-				8'h3c: led3 = !led3;
-				8'h43: led4 = !led4;
-				8'h44: led1 = !led1;
-				8'h4d: led2 = !led2;
-				8'h1c: led3 = !led3;
-				8'h1b: led4 = !led4;
-				8'h23: led1 = !led1;
-				8'h2b: led2 = !led2;
-				8'h34: led3 = !led3;
-				8'h33: led4 = !led4;
-				8'h3b: led1 = !led1;
-				8'h42: led2 = !led2;
-				8'h4b: led3 = !led3;
-				8'h1a: led4 = !led4;
-				8'h22: led1 = !led1;
-				8'h21: led2 = !led2;
-				8'h2a: led3 = !led3;
-				8'h32: led4 = !led4;
-				8'h31: led1 = !led1;
-				8'h3a: led2 = !led2;
-				8'h66: begin led1 = !led1; led2 = !led2; led3 = !led3; led4 = !led4; end//Backspace
-				8'h29: begin led1 = !led1; led2 = !led2; led3 = !led3; led4 = !led4; end //Spacebar
+				8'h15://Q 
+				begin
+					output_key = 5'b10001;
+				end
+				8'h1d://W
+				begin
+					output_key = 5'b10111;
+				end
+				8'h24://E
+				begin
+					output_key = 5'b00101;
+				end
+				8'h2d://R
+				begin
+					output_key = 5'b10010;
+				end
+				8'h2c://T
+				begin
+					output_key = 5'b10100;
+				end
+				8'h35://Y
+				begin
+					output_key = 5'b11001;
+				end
+				8'h3c://U
+				begin
+					output_key = 5'b10101;
+				end
+				8'h43://I
+				begin
+					output_key = 5'b01100;
+				end
+				8'h44://O
+				begin
+					output_key = 5'b01111;
+				end
+				8'h4d://P
+				begin
+					output_key = 5'b10000;
+				end
+				8'h1c://A
+				begin
+					output_key = 5'b00001;
+				end
+				8'h1b://S
+				begin
+					output_key = 5'b10011;
+				end
+				8'h23://D
+				begin
+					output_key = 5'b00100;
+				end
+				8'h2b://F
+				begin
+					output_key = 5'b00110;
+				end
+				8'h34://G
+				begin
+					output_key = 5'b00111;
+				end
+				8'h33://H
+				begin
+					output_key = 5'b01000;
+				end
+				8'h3b://J 
+				begin
+					output_key = 5'b01010;
+				end
+				8'h42://K
+				begin
+					output_key = 5'b01011;
+				end
+				8'h4b://L 
+				begin
+					output_key = 5'b01100;
+				end
+				8'h1a://Z
+				begin
+					output_key = 5'b11010;
+				end
+				8'h22://X
+				begin
+					output_key = 5'b11000;
+				end
+				8'h21://C
+				begin
+					output_key = 5'b00011;
+				end
+				8'h2a://V
+				begin
+					output_key = 5'b10110;
+				end
+				8'h32://B
+				begin
+					output_key = 5'b00010;
+				end
+				8'h31://N
+				begin
+					output_key = 5'b01110;
+				end
+				8'h3a://M
+				begin
+					output_key = 5'b01101;
+				end
+				8'h66://BACKSPACE
+				begin
+					output_key = 5'b11111;
+				end
+				8'h29://SPACEBAR
+				begin
+					output_key = 5'b00000;
+				end
+				8'h5a://ENTER
+				begin
+					output_key = 5'b11110;
+				end
+				
 			 endcase
 		 end
 		end
