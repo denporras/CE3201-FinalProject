@@ -35,43 +35,37 @@ module ALU(
 	 reg Negative = 0;
 	 reg Carry = 0;
 	 reg Overflow = 0;
+	 
 	 reg x = 0;
 	 reg y = 0;
 
 	always @*
 		begin
-			Zero = 0;
-			Negative = 0;
-			Carry = 0;
-			Overflow = 0;
 			case(ALU_Code)
 					2'b00 : tmp = OperA + OperB;
 					2'b01 : tmp = OperA - OperB;
-					2'b10 : Result = OperA & OperB;
-					2'b11 : Result = OperA | OperB;
-					default : Result = 0;
+					2'b10 : tmp = OperA & OperB;
+					2'b11 : tmp = OperA | OperB;
+					default : tmp = 0;
 				endcase
-			if(ALU_Code[1] == 0)
+			Negative = tmp[31];
+			Carry = tmp[32];
+			Result = tmp[31:0];
+			x = OperA[31] & OperB[31];
+			y = OperB[31] & Result[31];
+			if(x)
 				begin
-					Negative = tmp[31];
-					Carry = tmp[32];
-					Result = tmp[31:0];
-					x = OperA[31] & OperB[31];
-					y = OperB[31] & Result[31];
-					if(x)
+					Overflow = 0;
+				end
+			else
+				begin
+					if(!y)
 						begin
 							Overflow = 0;
 						end
 					else
 						begin
-							if(!y)
-								begin
-									Overflow = 0;
-								end
-							else
-								begin
-									Overflow = 1;
-								end
+							Overflow = 1;
 						end
 				end
 			if(Result == 0)

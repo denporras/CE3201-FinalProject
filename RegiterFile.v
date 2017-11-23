@@ -36,16 +36,18 @@ module RegiterFile(
 	 
 	 always @(posedge CLK)
 		begin
-			if(A1 == 15)
-				RD1 = R15;
-			else
-				RD1 = registers[A1];
-				
-			if(A2 == 15)
-				RD2 = R15;
-			else
-				RD2 = registers[A2];
-			
+			if(CLK == 1)
+				begin
+					if(A1 == 15)
+						RD1 = R15;
+					else
+						RD1 = registers[A1];
+						
+					if(A2 == 15)
+						RD2 = R15;
+					else
+						RD2 = registers[A2];
+				end
 		end
 	 always @(negedge CLK)
 		begin
