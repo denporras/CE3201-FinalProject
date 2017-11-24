@@ -31,6 +31,7 @@ module TopLevelModule(
 	 wire PCSrc;
 	 wire [1:0] RegSrc;
 	 wire RegWrite;
+	 wire [1:0] ImmSrc;
 	 wire [1:0] ALU_Code;
 	 wire [3:0] ALU_Flags;
 	 wire MemtoReg;
@@ -124,7 +125,6 @@ module TopLevelModule(
 		.we(0)//SEÑAL DE KEL
 		); 
 		
-	
 	 Add adder_pc_4(
 		.OperA(4),
 		.OperB(PC),
@@ -135,13 +135,13 @@ module TopLevelModule(
 		.OperB(PCplus4),
 		.Result(PCplus8));
 	
-	 MUX_2 M_Reg_1(
+	 MUX_2 M_Reg_1(//cambiar
 		.SEL(RegSrc[0]),
 		.IN_0(instruction[19:16]),
 		.IN_1(15),
 		.DAT_OUT(A1));
 	 
-	 MUX_2 M_Reg_2(
+	 MUX_2 M_Reg_2(//cambiar
 		.SEL(RegSrc[1]),
 		.IN_0(instruction[3:0]),
 		.IN_1(instruction[15:12]),
@@ -158,13 +158,11 @@ module TopLevelModule(
 		.RD2(RD2),
 		.CLK(CLK));
 		
-	 SignExtend_24 signImmExt_24(
+	
+	 Immediate imm (
 		.immediate_24(instruction[23:0]),
-		.immediate_32(Imme_31_B));
-		
-	 Shift_2 shi_2(
-		.in_data(Imme_31_B),
-		.out_data(Imme_31_BShift));
+		.immediate_sel(ImmSrc),
+		.out_immediate(Imme_31_BShift));
 	 
 	 MUX_2 ALU_Source_B (
 		.SEL(RegSrc[1]),

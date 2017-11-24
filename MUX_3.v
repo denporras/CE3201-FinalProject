@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    23:23:52 11/21/2017 
+// Create Date:    21:36:35 11/23/2017 
 // Design Name: 
-// Module Name:    SignExtend_24 
+// Module Name:    MUX_3 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,17 +18,24 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module SignExtend_24(
-    input [23:0] immediate_24,
-    output [31:0] immediate_32
-    );
+module MUX_3(
+	input [31:0] data_1,
+	input [31:0] data_2,
+	input [31:0] data_3,
+	input [1:0] sel,
+	output [31:0] out_data
+	);
 	 
-	 reg [31:0] immediate_32 = 0;
-	 
+	 reg [31:0] out_data;
 	 
 	 always @*
-		begin
-			immediate_32[31:0] <= { {8{immediate_24[23]}}, immediate_24[23:0] };
-		end
+	  case (sel)
+		  0 : out_data <= data_1;
+		  1 : out_data <= data_2;
+		  2 : out_data <= data_3;
+		  3 : out_data <= 0;
+		  default : out_data = 0;
+	  endcase
+
 
 endmodule

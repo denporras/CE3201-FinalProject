@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    23:23:52 11/21/2017 
+// Create Date:    13:36:40 11/23/2017 
 // Design Name: 
-// Module Name:    SignExtend_24 
+// Module Name:    Zero_Extend_8 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,17 +18,16 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module SignExtend_24(
-    input [23:0] immediate_24,
-    output [31:0] immediate_32
+module Zero_Extend_8(
+    input [7:0] immediate_8,
+    output [31:0] immediate_Zero_32
     );
 	 
-	 reg [31:0] immediate_32 = 0;
-	 
+	 reg [31:0] immediate_Zero_32;
 	 
 	 always @*
 		begin
-			immediate_32[31:0] <= { {8{immediate_24[23]}}, immediate_24[23:0] };
+			immediate_Zero_32 <= {{24{1'b0}},immediate_8};
 		end
 
 endmodule

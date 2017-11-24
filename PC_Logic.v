@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    23:23:52 11/21/2017 
+// Create Date:    02:46:16 11/24/2017 
 // Design Name: 
-// Module Name:    SignExtend_24 
+// Module Name:    PC_Logic 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,17 +18,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module SignExtend_24(
-    input [23:0] immediate_24,
-    output [31:0] immediate_32
+module PC_Logic(
+    input [3:0] Rd,
+	 input Branch,
+	 input RegW,
+    output reg PCS
     );
-	 
-	 reg [31:0] immediate_32 = 0;
-	 
 	 
 	 always @*
 		begin
-			immediate_32[31:0] <= { {8{immediate_24[23]}}, immediate_24[23:0] };
+			PCS = ((Rd == 15) & RegW) | Branch;
 		end
+
 
 endmodule

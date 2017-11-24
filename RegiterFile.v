@@ -33,22 +33,41 @@ module RegiterFile(
 	 reg [31:0] registers[15:0];
 	 reg [31:0] RD1 = 0;
 	 reg [31:0] RD2 = 0;
+	 initial begin 
+		 registers[0] = 0;
+		 registers[1] = 0;
+		 registers[2] = 0;
+		 registers[3] = 0;
+		 registers[4] = 0;
+		 registers[5] = 0;
+		 registers[6] = 0;
+		 registers[7] = 0;
+		 registers[8] = 0;
+		 registers[9] = 0;
+		 registers[10] = 0;
+		 registers[11] = 0;
+		 registers[12] = 0;
+		 registers[13] = 0;
+		 registers[14] = 0;
+		 registers[15] = 0;
+	end
 	 
-	 always @(posedge CLK)
+	 always @(A1)
 		begin
-			if(CLK == 1)
-				begin
-					if(A1 == 15)
-						RD1 = R15;
-					else
-						RD1 = registers[A1];
-						
-					if(A2 == 15)
-						RD2 = R15;
-					else
-						RD2 = registers[A2];
-				end
+			if(A1 == 15)
+				RD1 = R15;
+			else
+				RD1 = registers[A1];
 		end
+		
+	 always @(A2)
+		begin
+			if(A2 == 15)
+				RD2 = R15;
+			else
+				RD2 = registers[A2];
+		end
+		
 	 always @(negedge CLK)
 		begin
 			registers[15] = R15;
