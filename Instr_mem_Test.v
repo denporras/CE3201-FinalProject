@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   19:20:06 11/24/2017
+// Design Name:   Instruction_Memory
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/Instr_mem_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: Instruction_Memory
 //
 // Dependencies:
 // 
@@ -22,32 +22,33 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module Instr_mem_Test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg [31:0] a;
 
 	// Outputs
-	wire [31:0] Result;
+	wire [31:0] rd;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	Instruction_Memory uut (
+		.a(a), 
+		.rd(rd)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		a = 0;
+
+		// Wait 100 ns for global reset to finish
+		#100;
+		
+		a = 4;
+		
+		#100;
+		
+		a = 8;
+        
 		// Add stimulus here
 
 	end

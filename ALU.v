@@ -22,22 +22,28 @@ module ALU(
     input [31:0] OperA,
     input [31:0] OperB,
     input [1:0] ALU_Code,
-    output [31:0] Result,
-    output Zero,
-    output Negative,
-    output Carry,
-    output Overflow
+    output reg [31:0] Result,
+    output reg Zero,
+    output reg Negative,
+    output reg Carry,
+    output reg Overflow
     );
 	 
-	 reg [31:0] Result = 0;
-	 reg [32:0] tmp = 0;
-	 reg Zero = 0;
-	 reg Negative = 0;
-	 reg Carry = 0;
-	 reg Overflow = 0;
+	 reg [32:0] tmp;
+	 reg x;
+	 reg y;
 	 
-	 reg x = 0;
-	 reg y = 0;
+	 initial begin
+		 Result = 0;
+		 tmp = 0;
+		 Zero = 0;
+		 Negative = 0;
+		 Carry = 0;
+		 Overflow = 0;
+		 y = 0;
+		 x = 0;
+	 end
+	 
 
 	always @*
 		begin
@@ -54,28 +60,18 @@ module ALU(
 			x = OperA[31] & OperB[31];
 			y = OperB[31] & Result[31];
 			if(x)
-				begin
 					Overflow = 0;
-				end
 			else
 				begin
 					if(!y)
-						begin
-							Overflow = 0;
-						end
+						Overflow = 0;
 					else
-						begin
-							Overflow = 1;
-						end
+						Overflow = 1;
 				end
 			if(Result == 0)
-				begin
-					Zero = 1;
-				end
+				Zero = 1;
 			else
-				begin
-					Zero = 0;
-				end
+				Zero = 0;
 		end
 
 endmodule

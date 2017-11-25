@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    13:58:51 11/20/2017 
+// Create Date:    18:37:46 11/24/2017 
 // Design Name: 
-// Module Name:    MUX_2 
+// Module Name:    Instruction_Memory 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,20 +18,22 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MUX_2#(parameter WIDTH = 8)(
-    input SEL,
-    input [WIDTH-1:0] IN_0,
-    input [WIDTH-1:0] IN_1,
-    output reg [WIDTH-1:0] DAT_OUT
+module Instruction_Memory(
+    input [31:0] a,
+    output reg [31:0] rd
     );
 	 
-	 initial begin
-		DAT_OUT = 0;
-	 end
+	 reg [31:0] RAM[63:0];
 	 
-	 always @*
-		 begin
-			DAT_OUT = SEL ? IN_1 : IN_0;
-		 end
-
+	 initial begin
+		RAM[0] = 3818913802;
+		RAM[1] = 3818917893;
+		RAM[2] = 3766484993;
+		end
+	
+	 always @(a)
+		begin
+			rd = RAM[a/4];
+		end
+	 
 endmodule

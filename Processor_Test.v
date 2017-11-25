@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   18:51:38 11/24/2017
+// Design Name:   TopProcessor
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/Processor_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: TopProcessor
 //
 // Dependencies:
 // 
@@ -22,35 +22,40 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module Processor_Test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg CLK;
+	reg reset;
 
 	// Outputs
-	wire [31:0] Result;
+	wire [31:0] WriteData;
+	wire [31:0] DataAdr;
+	wire MemWrite;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	TopProcessor uut (
+		.CLK(CLK), 
+		.reset(reset), 
+		.WriteData(WriteData), 
+		.DataAdr(DataAdr), 
+		.MemWrite(MemWrite)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		reset = 1;
+		#0.5;
+		reset = 0;
+		
+        
 		// Add stimulus here
 
 	end
-      
+	
+	always begin
+		CLK <= 1; # 5; CLK <= 0; # 5;
+	end
+	
 endmodule
 
