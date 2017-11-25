@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/daedgomez/Desarrollo/CommandLineInterface/TestingKeyboard_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="TestingKeyboard" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/TestingKeyboard/scan_err" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">scan_err</obj_property>
+      <obj_property name="ObjectShortName">scan_err</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/scan_code" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">scan_code[10:0]</obj_property>
+      <obj_property name="ObjectShortName">scan_code[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/COUNT" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">COUNT[3:0]</obj_property>
+      <obj_property name="ObjectShortName">COUNT[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/TRIG_ARR" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">TRIG_ARR</obj_property>
+      <obj_property name="ObjectShortName">TRIG_ARR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/CODEWORD" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">CODEWORD[7:0]</obj_property>
+      <obj_property name="ObjectShortName">CODEWORD[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/LED" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">LED[7:0]</obj_property>
+      <obj_property name="ObjectShortName">LED[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/CLK" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/PS2_CLK" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2_CLK</obj_property>
+      <obj_property name="ObjectShortName">PS2_CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/PS2_DATA" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2_DATA</obj_property>
+      <obj_property name="ObjectShortName">PS2_DATA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/uut/TRIGGER" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">TRIGGER</obj_property>
+      <obj_property name="ObjectShortName">TRIGGER</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/uut/read" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">read</obj_property>
+      <obj_property name="ObjectShortName">read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/uut/count_reading" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">count_reading[11:0]</obj_property>
+      <obj_property name="ObjectShortName">count_reading[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/uut/scan_code" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">scan_code[10:0]</obj_property>
+      <obj_property name="ObjectShortName">scan_code[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/uut/scan_err" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">scan_err</obj_property>
+      <obj_property name="ObjectShortName">scan_err</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TestingKeyboard/uut/PREVIOUS_STATE" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PREVIOUS_STATE</obj_property>
+      <obj_property name="ObjectShortName">PREVIOUS_STATE</obj_property>
+   </wvobject>
+</wave_config>

@@ -19,29 +19,17 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module TopLevelModule(
-		/*clk, 
+		clk, 
 		rst,
-		btnu,
 		vsync,
 		hsync,
 		VGA_R,
 		VGA_G,
-		VGA_B,*/
-		CLK_K,	
-		PS2_CLK,	
-		PS2_DATA,
-		LED	
+		VGA_B	
 );
 
-	//keyboard
-	input CLK_K;		//board clock signal
-	input PS2_CLK;		//keyboard clock signal
-	input PS2_DATA;		//keyboard data signal
-	output [7:0] LED;	//8 output LEDs
-		
-	/*input	clk; 
+	input	clk; 
 	input rst;
-	input btnu;
 	output	vsync;
 	output	hsync;
 	output [2:0] VGA_R;
@@ -57,18 +45,11 @@ module TopLevelModule(
 	wire [9:0] HCOUNT;
 	wire [9:0] VCOUNT;
 	wire [7:0] FINAL_PIXEL;
-	wire [7:0] scene_pixel;*/
+	wire [7:0] scene_pixel;
 	
 	
 	
-	Keyboard TestingKeyboard (
-							.CLK(CLK_K),
-							.PS2_CLK(PS2_CLK), 
-							.PS2_DATA(PS2_DATA),
-							.LED(LED)
-							);
-	
-/*	
+
 vga_controller controller(
 	.clk(VCLK),
 	.final_pixel(FINAL_PIXEL),
@@ -87,6 +68,13 @@ ClkDiv_25MHz vgaclk(
 			 .CLKOUT(VCLK)
 );
 
+draw_symbol ds(
+		.hcount(HCOUNT), 
+		.vcount(VCOUNT),
+		.clk(VCLK),
+		.pixel(FINAL_PIXEL)
+    );
+/**
 draw_scene scene(
 			 .hcount(HCOUNT),
 			 .vcount(VCOUNT),
@@ -103,8 +91,7 @@ VideoMemory vm(
 .re(1), 
 .we(1) 
 ); 
-*/
-/**
+
 sp_ram_rw mem(
 .clk(CLK),
 .address(ADDRESS), 
