@@ -27,7 +27,8 @@ module RegiterFile(
     input WE3,
     output reg [31:0] RD1,
     output reg [31:0] RD2,
-	 input CLK
+	 input CLK,
+	 input link
     );
 	 
 	 reg [31:0] registers[15:0];
@@ -65,6 +66,8 @@ module RegiterFile(
 		begin
 			if(WE3)
 				registers[A3] = WD3;
+			if(link)
+				registers[14] = R15-4;
 		end
 
 endmodule

@@ -31,10 +31,11 @@ module Control_Unit(
 	 output wire MemWrite,
 	 output wire MemtoReg,
 	 output wire PCSrc,
-	 output wire MOVInstr);
+	 output wire MOVInstr,
+	 output wire link);
 	 
     wire [1:0] FlagW;
-	 wire PCS, RegW, MemW, NoWrite;
+	 wire PCS, RegW, MemW, NoWrite, link_aux;
 	 
 	 Decoder deco(
 		.Op(Instr[27:26]),
@@ -50,7 +51,8 @@ module Control_Unit(
 		.RegSrc(RegSrc),
 		.ALUControl(ALUControl),
 		.NoWrite(NoWrite),
-		.MOVInstr(MOVInstr));
+		.MOVInstr(MOVInstr),
+		.link(link_aux));
 	
 	 Conditional_Logic cond_lo(
 			.CLK(CLK),
@@ -62,9 +64,11 @@ module Control_Unit(
 			.RegW(RegW),
 			.MemW(MemW),
 			.NoWrite(NoWrite),
+			.in_link(link_aux),
 			.PCSrc(PCSrc),
 			.RegWrite(RegWrite),
-			.MemWrite(MemWrite));
+			.MemWrite(MemWrite),
+			.link(link));
 
 
 

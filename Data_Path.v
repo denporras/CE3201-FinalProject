@@ -34,7 +34,8 @@ module Data_Path(
     output wire [31:0] ALUResult,
     output wire [31:0] WriteData,
     input [31:0] ReadData,
-	 input MOVInstr
+	 input MOVInstr,
+	 input link
     );
 	 
 	 wire [31:0] PCnext, PCplus4, PCplus8;
@@ -87,7 +88,8 @@ module Data_Path(
 		.WE3(RegWrite),
 		.RD1(RegAData),
 		.RD2(WriteData),
-		.CLK(CLK));
+		.CLK(CLK),
+		.link(link));
 	 
 	 Immediate imm_ext(
 		.immediate_24(Instr[23:0]),

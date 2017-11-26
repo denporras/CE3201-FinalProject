@@ -32,7 +32,8 @@ module Decoder(
     output wire [1:0] RegSrc,
     output wire [1:0] ALUControl,
 	 output wire NoWrite,
-	 output wire MOVInstr);
+	 output wire MOVInstr,
+	 output wire link);
 	 
 	 
 	 wire Branch, ALUOp;
@@ -48,7 +49,8 @@ module Decoder(
 		.ALUSrc(ALUSrc),
 		.ImmSrc(ImmSrc),
 		.RegSrc(RegSrc),
-		.ALUOp(ALUOp));
+		.ALUOp(ALUOp),
+		.link(link));
 	
 	 ALU_Decoder alu_dec(
 		.Funct40(Funct[4:0]),
@@ -64,6 +66,7 @@ module Decoder(
 		.Branch(Branch),
 		.RegW(RegW),
 		.PCS(PCS));
+		
 	 
 	 
 

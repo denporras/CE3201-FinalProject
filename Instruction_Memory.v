@@ -39,7 +39,7 @@ module Instruction_Memory(
 		RAM[10] = 32'hE5852004;
 		RAM[11] = 32'hE5952004;
 		RAM[12] = 32'hE1500000;
-		RAM[13] = 32'h0AFFFFF6;
+		RAM[13] = 32'hEBFFFFF6;
 		end
 	
 	 always @(a)
