@@ -25,27 +25,46 @@ module RegiterFile(
     input [31:0] WD3,
 	 input [31:0] R15,
     input WE3,
-    output [31:0] RD1,
-    output [31:0] RD2,
+    output reg [31:0] RD1,
+    output reg [31:0] RD2,
 	 input CLK
     );
 	 
 	 reg [31:0] registers[15:0];
-	 reg [31:0] RD1 = 0;
-	 reg [31:0] RD2 = 0;
+
+	 initial begin 
+		 registers[0] = 0;
+		 registers[1] = 0;
+		 registers[2] = 0;
+		 registers[3] = 0;
+		 registers[4] = 0;
+		 registers[5] = 0;
+		 registers[6] = 0;
+		 registers[7] = 0;
+		 registers[8] = 0;
+		 registers[9] = 0;
+		 registers[10] = 0;
+		 registers[11] = 0;
+		 registers[12] = 0;
+		 registers[13] = 0;
+		 registers[14] = 0;
+		 registers[15] = 0;
+	end
 	 
-	 always @(CLK)
+	 always @*
 		begin
-			registers[15] = R15;
-			RD1 = registers[A1];
-			RD2 = registers[A2];
+			RD1 = (A1 == 15) ? R15 : registers[A1];
 		end
-	 always @(negedge CLK)
+		
+	 always @*
+		begin
+			RD2 = (A2 == 15) ? R15 : registers[A2];
+		end
+		
+	 always @(posedge CLK)
 		begin
 			if(WE3)
-				begin
-					registers[A3] = WD3;
-				end
+				registers[A3] = WD3;
 		end
 
 endmodule

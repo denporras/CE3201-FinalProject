@@ -18,17 +18,14 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Add(
-    input [31:0] OperA,
-    input [31:0] OperB,
-    output [31:0] Result
-    );
-	 
-	 reg [31:0] Result = 0;
+module Add#(parameter WITH = 8)
+	(input [WITH-1:0] OperA,
+    input [WITH-1:0] OperB,
+    output reg [WITH-1:0] Result);	 
 	 
 	 always @*
 		begin
-			Result <= OperA + OperB;
+			Result = OperA + OperB;
 		end
 	
 

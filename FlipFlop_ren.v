@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    13:58:51 11/20/2017 
+// Create Date:    13:15:30 11/24/2017 
 // Design Name: 
-// Module Name:    MUX_2 
+// Module Name:    FlipFlop_ren 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,20 +18,21 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MUX_2#(parameter WIDTH = 8)(
-    input SEL,
-    input [WIDTH-1:0] IN_0,
-    input [WIDTH-1:0] IN_1,
-    output reg [WIDTH-1:0] DAT_OUT
+module FlipFlop_ren#(parameter WIDTH = 8)(
+    input CLK,
+    input reset,
+    input en,
+    input [WIDTH-1:0] d,
+    output reg [WIDTH-1:0] q
     );
 	 
-	 initial begin
-		DAT_OUT = 0;
-	 end
-	 
-	 always @*
-		 begin
-			DAT_OUT = SEL ? IN_1 : IN_0;
-		 end
+	 always @(posedge CLK, posedge reset)
+		begin
+			if(reset)
+				q <= 0;
+			else if(en)
+				q <= d;	
+		end
+
 
 endmodule

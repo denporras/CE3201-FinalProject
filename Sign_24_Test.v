@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   23:31:40 11/21/2017
+// Design Name:   SignExtend_24
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/Sign_24_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: SignExtend_24
 //
 // Dependencies:
 // 
@@ -22,32 +22,24 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module Sign_24_Test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg [23:0] immediate_24;
 
 	// Outputs
-	wire [31:0] Result;
+	wire [31:0] immediate_32;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	SignExtend_24 uut (
+		.immediate_24(immediate_24), 
+		.immediate_32(immediate_32)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		immediate_24 = 24'b111111111111111111111101;
+        
 		// Add stimulus here
 
 	end

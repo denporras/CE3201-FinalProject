@@ -1,0 +1,12 @@
+## Clock 100Mhz
+Net "CLK" LOC=V10 | IOSTANDARD=LVCMOS33;
+Net "CLK" TNM_NET = sys_clk_pin;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;
+
+NET "LED1" LOC = "U16";
+NET "LED2" LOC = "V16"; #Bank = 2, pin name = IO_L2N_CMPMOSI, Sch name = LD1
+NET "LED3" LOC = "U15"; #Bank = 2, pin name = IO_L5P, Sch name = LD2
+NET "LED4" LOC = "V15"; #Bank = 2, pin name = IO_L5N, Sch name = LD3
+
+NET "PS2DAT" LOC = "J13" | IOSTANDARD = LVCMOS33 | PULLUP; #Bank = 1, pin name = IO_L39P_M1A3, Sch name = PIC-SDI1
+NET "PS2CLK" LOC = "L12" | IOSTANDARD = LVCMOS33 | PULLUP; #Bank = 1, pin name = IO_L40P_GCLK11_M1A5, Sch name = PIC-SCK1

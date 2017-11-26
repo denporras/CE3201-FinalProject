@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
-// Project Name:  CommandLineInterface
+// Create Date:   00:23:03 11/22/2017
+// Design Name:   Clk_50MHz
+// Module Name:   C:/Users/stanley/Desktop/Taller digitales/keyboard/Clk_50MHz_test.v
+// Project Name:  keyboard
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: Clk_50MHz
 //
 // Dependencies:
 // 
@@ -22,35 +22,35 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module Clk_50MHz_test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg CLK;
+	reg RST;
 
 	// Outputs
-	wire [31:0] Result;
+	wire CLKOUT;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	Clk_50MHz uut (
+		.CLK(CLK), 
+		.RST(RST), 
+		.CLKOUT(CLKOUT)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
-		// Add stimulus here
+		CLK = 0;
+		RST = 0;
+
+		// Wait 100 ns for global reset to finish
+		#100;
+        
 
 	end
+	
+	always
+			#5 CLK = ~CLK;// Add stimulus here
       
 endmodule
 

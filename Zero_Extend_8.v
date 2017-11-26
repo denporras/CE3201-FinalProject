@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    13:58:51 11/20/2017 
+// Create Date:    13:36:40 11/23/2017 
 // Design Name: 
-// Module Name:    MUX_2 
+// Module Name:    Zero_Extend_8 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,20 +18,16 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MUX_2#(parameter WIDTH = 8)(
-    input SEL,
-    input [WIDTH-1:0] IN_0,
-    input [WIDTH-1:0] IN_1,
-    output reg [WIDTH-1:0] DAT_OUT
+module Zero_Extend_8(
+    input [7:0] immediate_8,
+    output [31:0] immediate_Zero_32
     );
 	 
-	 initial begin
-		DAT_OUT = 0;
-	 end
+	 reg [31:0] immediate_Zero_32;
 	 
 	 always @*
-		 begin
-			DAT_OUT = SEL ? IN_1 : IN_0;
-		 end
+		begin
+			immediate_Zero_32 <= {{24{1'b0}},immediate_8};
+		end
 
 endmodule

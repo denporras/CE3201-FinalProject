@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   15:51:20 11/22/2017
+// Design Name:   Register_2b
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/Register_2b_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: Register_2b
 //
 // Dependencies:
 // 
@@ -22,34 +22,39 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module Register_2b_Test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg [1:0] in_dat;
+	reg CLK;
 
 	// Outputs
-	wire [31:0] Result;
+	wire [1:0] out_dat;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	Register_2b uut (
+		.in_dat(in_dat), 
+		.CLK(CLK), 
+		.out_dat(out_dat)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		in_dat = 2;
+		CLK = 0;
+		#30;
+		in_dat = 3;
+		#60;
+		in_dat = 1;
+		#50;
+		in_dat = 0;
+        
 		// Add stimulus here
 
+	end
+	
+	always begin
+		#10 CLK = !CLK;
 	end
       
 endmodule

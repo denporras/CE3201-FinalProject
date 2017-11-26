@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   22:42:38 11/21/2017
+// Design Name:   ALU
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/ALU_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: ALU
 //
 // Dependencies:
 // 
@@ -22,32 +22,56 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module ALU_Test;
 
 	// Inputs
 	reg [31:0] OperA;
 	reg [31:0] OperB;
+	reg [1:0] ALU_Code;
 
 	// Outputs
 	wire [31:0] Result;
+	wire Zero;
+	wire Negative;
+	wire Carry;
+	wire Overflow;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
+	ALU uut (
 		.OperA(OperA), 
 		.OperB(OperB), 
-		.Result(Result)
+		.ALU_Code(ALU_Code), 
+		.Result(Result), 
+		.Zero(Zero), 
+		.Negative(Negative), 
+		.Carry(Carry), 
+		.Overflow(Overflow)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		OperA = 255;
+		OperB = 255;
+		ALU_Code = 0;
+
+		#100;
+		
+		OperA = 251;
+		OperB = 252;
+		ALU_Code = 1;
+
+		#100;
+		
+		OperA = 15;
+		OperB = 0;
+		ALU_Code = 2;
+
+		#100;
+		
+		OperA = 63;
+		OperB = 31;
+		ALU_Code = 3;
+        
 		// Add stimulus here
 
 	end

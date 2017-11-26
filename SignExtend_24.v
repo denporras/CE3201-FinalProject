@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    13:58:51 11/20/2017 
+// Create Date:    23:23:52 11/21/2017 
 // Design Name: 
-// Module Name:    MUX_2 
+// Module Name:    SignExtend_24 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,20 +18,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MUX_2#(parameter WIDTH = 8)(
-    input SEL,
-    input [WIDTH-1:0] IN_0,
-    input [WIDTH-1:0] IN_1,
-    output reg [WIDTH-1:0] DAT_OUT
+module SignExtend_24(
+    input [23:0] immediate_24,
+    output [31:0] immediate_32
     );
 	 
-	 initial begin
-		DAT_OUT = 0;
-	 end
+	 reg [31:0] immediate_32 = 0;
+	 
 	 
 	 always @*
-		 begin
-			DAT_OUT = SEL ? IN_1 : IN_0;
-		 end
+		begin
+			immediate_32[31:0] <= { {8{immediate_24[23]}}, immediate_24[23:0] };
+		end
 
 endmodule

@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   21:40:40 11/23/2017
+// Design Name:   MUX_3
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/MUX_3_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: MUX_3
 //
 // Dependencies:
 // 
@@ -22,32 +22,37 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module MUX_3_Test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg [31:0] data_1;
+	reg [31:0] data_2;
+	reg [31:0] data_3;
+	reg [1:0] sel;
 
 	// Outputs
-	wire [31:0] Result;
+	wire [31:0] out_data;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	MUX_3 uut (
+		.data_1(data_1), 
+		.data_2(data_2), 
+		.data_3(data_3), 
+		.sel(sel), 
+		.out_data(out_data)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		data_1 = 1;
+		data_2 = 2;
+		data_3 = 3;
+		sel = 0;
+		#100;
+		sel = 1;
+		#100;
+		sel = 2;
+        
 		// Add stimulus here
 
 	end

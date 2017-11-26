@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   13:44:52 11/20/2017
-// Design Name:   Add
-// Module Name:   /home/dennis/Documentos/CommandLineInterface/Add_Test.v
+// Create Date:   03:20:19 11/24/2017
+// Design Name:   PC_Logic
+// Module Name:   /home/dennis/Documentos/CommandLineInterface/PC_Logic_Test.v
 // Project Name:  CommandLineInterface
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: Add
+// Verilog Test Fixture created by ISE for module: PC_Logic
 //
 // Dependencies:
 // 
@@ -22,32 +22,42 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module Add_Test;
+module PC_Logic_Test;
 
 	// Inputs
-	reg [31:0] OperA;
-	reg [31:0] OperB;
+	reg [3:0] Rd;
+	reg Branch;
+	reg RegW;
 
 	// Outputs
-	wire [31:0] Result;
+	wire PCS;
 
 	// Instantiate the Unit Under Test (UUT)
-	Add#(32) uut (
-		.OperA(OperA), 
-		.OperB(OperB), 
-		.Result(Result)
+	PC_Logic uut (
+		.Rd(Rd), 
+		.Branch(Branch), 
+		.RegW(RegW), 
+		.PCS(PCS)
 	);
 
 	initial begin
 		// Initialize Inputs
-		OperA = 2;
-		OperB = 2;
-		#15;
-		OperA = 5;
-		OperB = 3;
-		#15;
-      OperA = 8;
-		OperB = 7;
+		Rd = 4;
+		Branch = 0;
+		RegW = 1;
+		#100;
+		Rd = 4;
+		Branch = 1;
+		RegW = 0;
+		#100;
+		Rd = 15;
+		Branch = 0;
+		RegW = 1;
+		#100;
+		Rd = 4;
+		Branch = 0;
+		RegW = 0;
+        
 		// Add stimulus here
 
 	end
