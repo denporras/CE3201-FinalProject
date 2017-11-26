@@ -38,6 +38,7 @@ reg [9:0] x;
 reg [9:0] y;
 reg [3:0] i;
 reg [3:0] j;
+
 always @(posedge clk) 
 		begin
 			if (hcount<40)
@@ -345,7 +346,7 @@ always @(posedge clk)
 						begin
 						//K
 						if(data == 11 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35))||
-						((hcount >= x && hcount < x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
@@ -355,7 +356,7 @@ always @(posedge clk)
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
-					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+30 && vcount < y+35))) 
+					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+30 && vcount < y+35)))) 
 					pixel <= 8'hFF;
 					else
 						begin
@@ -394,9 +395,9 @@ always @(posedge clk)
 						begin
 						//O
 						if(data == 15 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
 					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
-					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+30))) 
+					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+30)))) 
 					pixel <= 8'hFF;
 					else
 						begin
@@ -528,9 +529,9 @@ always @(posedge clk)
 						if(data == 28 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
-					((hcount >= +15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
+					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
-					((hcount >= +5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
+					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))))
 					pixel <= 8'hFF;
@@ -572,91 +573,7 @@ always @(posedge clk)
 		end
 		end
 		end
-		//-
-		//_
-		//
+	
 		
 		end
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/**
-		
-			if ( hcount == 0 || vcount == 0 || hcount == 638 || vcount == 478 ||			
-			//T
-			((hcount >= x1 && hcount < (x1 + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x1 + 2*WIDTH) && hcount < (x1 + 2*WIDTH + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x1 + 2*WIDTH) && hcount < (x1 + 2*WIDTH + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			//I
-			((hcount >= (x1+z) && hcount < ((x1+z) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x1+z) && hcount < ((x1+z) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + 2*HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower horizontal line
-			((hcount >= (x1 + 2*WIDTH + z) && hcount < (x1 + z + 2*WIDTH + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x1 + 2*WIDTH + z) && hcount < (x1 + z + 2*WIDTH + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			//M
-			((hcount >= (x1+z*2) && hcount < ((x1+z*2) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x1+z*2) && hcount < ((x1+z*2) + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x1+z*2) && hcount < ((x1+z*2) + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			((hcount >= ((x1+z*2) + WIDTH + HEIGHT) && hcount < ((x1+z*2) + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper right vertical line
-			((hcount >= ((x1+z*2) + 2*WIDTH + HEIGHT) && hcount < (((x1+z*2) + WIDTH + HEIGHT) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (((x1+z*2) + WIDTH + HEIGHT) + WIDTH + HEIGHT) && hcount < (((x1+z*2) + WIDTH + HEIGHT) + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper right vertical line
-			((hcount >= (((x1+z*2) + WIDTH + HEIGHT) + WIDTH + HEIGHT) && hcount < (((x1+z*2) + WIDTH + HEIGHT) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower right vertical line
-			//E
-			((hcount >= (x1+z*3+13) && hcount < ((x1+z*3+13) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x1+z*3+13) && hcount < ((x1+z*3+13) + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + HEIGHT))) || //middle vertical line
-			((hcount >= (x1+z*3+13) && hcount < ((x1+z*3+13) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + 2*HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower horizontal line
-			((hcount >= (x1+z*3+13) && hcount < ((x1+z*3+13) + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x1+z*3+13) && hcount < ((x1+z*3+13) + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			//:
-			((hcount >= (x1+z*4+13) && hcount < ((x1+z*4+13) + WIDTH)) && (vcount >= (y - 4 + HEIGHT) && vcount < (y - 4 + WIDTH + HEIGHT))) ||
-			((hcount >= (x1+z*4+13) && hcount < ((x1+z*4+13) + WIDTH)) && (vcount >= (y - 4 + WIDTH + 2*HEIGHT) && vcount < (y - 4 + 2*WIDTH + 2*HEIGHT))) ||
-			
-			//S
-			((hcount >= x2 && hcount < (x2 + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= x2 && hcount < (x2 + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= x2 && hcount < (x2 + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + HEIGHT))) || //middle vertical linE
-			((hcount >= x2 && hcount < (x2 + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + 2*HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower horizontal line
-			((hcount >= (x2 + WIDTH + HEIGHT) && hcount < (x2 + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower right vertical line
-			//C
-			((hcount >= (x2+z) && hcount < ((x2+z) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x2+z) && hcount < ((x2+z) + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x2+z) && hcount < ((x2+z) + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			((hcount >= (x2+z) && hcount < ((x2+z) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + 2*HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower horizontal line
-			//O
-			((hcount >= (x2+z*2) && hcount < ((x2+z*2) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x2+z*2) && hcount < ((x2+z*2) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + 2*HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower horizontal line
-			((hcount >= (x2+z*2) && hcount < ((x2+z*2) + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x2+z*2) && hcount < ((x2+z*2) + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			((hcount >= ((x2+z*2) + WIDTH + HEIGHT) && hcount < ((x2+z*2) + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH) && vcount < (y + 2*WIDTH + HEIGHT))) || //upper right vertical line
-			((hcount >= ((x2+z*2) + WIDTH + HEIGHT) && hcount < ((x2+z*2) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower right vertical line
-			//R
-			((hcount >= (x2+z*3) && hcount < ((x2+z*3) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x2+z*3) && hcount < ((x2+z*3) + WIDTH + HEIGHT)) && (vcount >= (y + WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + HEIGHT))) || //middle vertical line
-			((hcount >= (x2+z*3) && hcount < ((x2+z*3) + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x2+z*3) && hcount < ((x2+z*3) + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			((hcount >= ((x2+z*3) + WIDTH + HEIGHT) && hcount < ((x2+z*3) + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH) && vcount < (y + WIDTH + HEIGHT))) || //upper right vertical line
-			((hcount >= ((x2+z*3) + WIDTH + HEIGHT) && hcount < ((x2+z*3) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower right vertical line
-			//E
-			((hcount >= (x2+z*4) && hcount < ((x2+z*4) + 2*WIDTH + HEIGHT)) && (vcount >= y && vcount < (y + WIDTH))) || //upper horizontal line
-			((hcount >= (x2+z*4) && hcount < ((x2+z*4) + 2*WIDTH + HEIGHT)) && (vcount >= (y + WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + HEIGHT))) || //middle vertical line
-			((hcount >= (x2+z*4) && hcount < ((x2+z*4) + 2*WIDTH + HEIGHT)) && (vcount >= (y + 2*WIDTH + 2*HEIGHT) && vcount < (y + 3*WIDTH + 2*HEIGHT))) || //lower horizontal line
-			((hcount >= (x2+z*4) && hcount < ((x2+z*4) + WIDTH)) && (vcount >= (y + WIDTH) && vcount < (y + WIDTH + HEIGHT))) || //upper left vertical line
-			((hcount >= (x2+z*4) && hcount < ((x2+z*4) + WIDTH)) && (vcount >= (y + 2*WIDTH + HEIGHT) && vcount < (y + 2*WIDTH + 2*HEIGHT))) || //lower left vertical line
-			//:
-			((hcount >= (x2+z*5) && hcount < ((x2+z*5) + WIDTH)) && (vcount >= (y - 4 + HEIGHT) && vcount < (y - 4 + WIDTH + HEIGHT))) ||
-			((hcount >= (x2+z*5) && hcount < ((x2+z*5) + WIDTH)) && (vcount >= (y - 4 + WIDTH + 2*HEIGHT) && vcount < (y - 4 + 2*WIDTH + 2*HEIGHT)))
-			)
-				pixel <= 8'hFF;
-			else
-				pixel <= 8'b0;
-		end
-
-*/
-
 endmodule

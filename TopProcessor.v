@@ -41,10 +41,11 @@ module TopProcessor(
 		wire [9:0] VCOUNT;
 		wire [7:0] FINAL_PIXEL;
 		wire [7:0] scene_pixel;
+		wire clk1k;
 	 
 	 
 	 SingleCycleARM arm (
-			.CLK(CLK),
+			.CLK(clk1k),
 			.reset(reset),
 			.PC(PC),
 			.Instr(Instr),
@@ -57,8 +58,12 @@ module TopProcessor(
 		.a(PC),
 		.rd(Instr));
 	
+	CLK1KHz a(
+   .clk_100mhz(CLK),
+	.clk(clk1k));
+	
 	 Data_Memory dmem(
-		.CLK(CLK),
+		.CLK(clk1k),
 		.WE(MemWrite),
 		.a(DataAdr),
 		.clkv(VCLK),
@@ -69,7 +74,6 @@ module TopProcessor(
 		
 	ClkDiv_25MHz vgaclk(
 		.CLK(CLK),
-		.RST(rst),
 		.CLKOUT(VCLK));
 		
 		vga_controller controller(
@@ -90,6 +94,7 @@ module TopProcessor(
 		.pixel(FINAL_PIXEL),
 		.adr(VideoAdr),
 		.data(VideoData));
+		//.data(1));
 	 
 
 

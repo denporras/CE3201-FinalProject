@@ -29,10 +29,14 @@ module Data_Memory(
 	  output reg [31:0] Rdv
     );
 	 
-	 reg [31:0] RAM[63:0];
+	 reg [31:0] RAM[254:0];
+	 reg [7:0] index;
 	 initial begin
-	  for (index=0; index < 64; index = index + 1)
+	  for (index=0; index < 255; index = index + 1)
 	RAM[index] = 0;
+	//RAM[0] = 3;
+	//RAM[1] = 2;
+	//RAM[2] = 1;
 	end
 	 
 	 always @*
@@ -40,7 +44,7 @@ module Data_Memory(
 			Rd = RAM[a/4];
 		end
 	
-	always @(posedge clkv)
+	always @*
 		begin
 			Rdv = RAM[av];
 		end

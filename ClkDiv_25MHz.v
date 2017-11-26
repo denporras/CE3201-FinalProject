@@ -20,35 +20,26 @@
 //////////////////////////////////////////////////////////////////////////////////
 module ClkDiv_25MHz(
   		CLK,
-		RST,
 		CLKOUT
 );
 
 // ====================================================================================
 // 										Port Declarations
 // ====================================================================================
-   input			 CLK;		// 100MHz onboard clock
-   input			 RST;		// Reset
+   input			 CLK;		// 100MHz onboard clock	// Reset
    output		 CLKOUT;	// New clock output
 
 // ====================================================================================
 // 								Parameters, Register, and Wires
 // ====================================================================================
-   reg 			 CLKOUT;
-	reg 			 flag;
+   reg 			 CLKOUT = 0;
+	reg 			 flag = 1;
 
 //  ===================================================================================
 // 							  				Implementation
 //  ===================================================================================
 
-		always @(posedge CLK or posedge RST)
-			// Reset clock
-			if (RST == 1'b1) 
-			begin
-				CLKOUT <= 0;
-				flag <= 1;
-			end
-			else 
+		always @(posedge CLK)
 			begin
 				if (flag == 1)
 				begin
@@ -60,5 +51,4 @@ module ClkDiv_25MHz(
 					flag <= 1;
 				end
 			end
-   
 endmodule
