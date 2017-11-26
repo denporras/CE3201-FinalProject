@@ -26,9 +26,10 @@ module Instruction_Memory(
 	 reg [31:0] RAM[63:0];
 	 
 	 initial begin
-		RAM[0] = 3818913802;
-		RAM[1] = 3818917893;
-		RAM[2] = 3766484993;
+		RAM[0] = 3818922014;
+		RAM[1] = 3818934276;
+		RAM[2] = 3851755528;
+		RAM[3] = 3850723336;
 		end
 	
 	 always @(a)

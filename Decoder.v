@@ -31,8 +31,8 @@ module Decoder(
     output wire [1:0] ImmSrc,
     output wire [1:0] RegSrc,
     output wire [1:0] ALUControl,
-	 output wire NoWrite
-    );
+	 output wire NoWrite,
+	 output wire MOVInstr);
 	 
 	 
 	 wire Branch, ALUOp;
@@ -55,7 +55,8 @@ module Decoder(
 		.ALUOp(ALUOp),
 		.ALUControl(ALUControl),
 		.FlagW(FlagW),
-		.NoWrite(NoWrite)
+		.NoWrite(NoWrite),
+		.MOVInstr(MOVInstr)
     );
 	 
 	 PC_Logic pc_log(

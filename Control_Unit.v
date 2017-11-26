@@ -30,7 +30,8 @@ module Control_Unit(
 	 output wire [1:0] ALUControl,
 	 output wire MemWrite,
 	 output wire MemtoReg,
-	 output wire PCSrc);
+	 output wire PCSrc,
+	 output wire MOVInstr);
 	 
     wire [1:0] FlagW;
 	 wire PCS, RegW, MemW, NoWrite;
@@ -48,7 +49,8 @@ module Control_Unit(
 		.ImmSrc(ImmSrc),
 		.RegSrc(RegSrc),
 		.ALUControl(ALUControl),
-		.NoWrite(NoWrite));
+		.NoWrite(NoWrite),
+		.MOVInstr(MOVInstr));
 	
 	 Conditional_Logic cond_lo(
 			.CLK(CLK),
