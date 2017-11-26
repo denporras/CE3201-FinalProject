@@ -86,7 +86,7 @@ module ALU_Decoder(
 								else
 										FlagW = 2;
 							end
-						4'b1101 : //MOV
+						4'b1101 : //MOV //Shift
 							begin
 								ALUControl = 0;
 								NoWrite = 0;

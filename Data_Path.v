@@ -39,7 +39,7 @@ module Data_Path(
     );
 	 
 	 wire [31:0] PCnext, PCplus4, PCplus8;
-	 wire [31:0] ExtImm, RegAData, SrcA, SrcB, Result;
+	 wire [31:0] ExtImm, RegAData, RegBData, SrcA, SrcB, Result;
 	 wire [31:0] RA1, RA2;
 	 
 	 
@@ -90,6 +90,13 @@ module Data_Path(
 		.RD2(WriteData),
 		.CLK(CLK),
 		.link(link));
+		
+	 shift shift_data(
+		.input_shift(WriteData),
+		.shift_amount(Instr[11:7]),
+		.type(Instr[6:5]),
+		.output_shift(RegBData));
+	 
 	 
 	 Immediate imm_ext(
 		.immediate_24(Instr[23:0]),
@@ -99,7 +106,7 @@ module Data_Path(
 	 //ALU
 	 MUX_2#(32) OperB_MUX(
 		.SEL(ALUSrc),
-		.IN_0(WriteData),
+		.IN_0(RegBData),
 		.IN_1(ExtImm),
 		.DAT_OUT(SrcB));
 

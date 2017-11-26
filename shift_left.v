@@ -27,7 +27,8 @@ reg [31:0] output_shift = 32'b0;
 
 always @* begin
 	if(type == 0) begin
-		case(shift_amount)
+		case(shift_amount) 
+			5'b00000: output_shift = input_shift;
 			5'b00001: output_shift = input_shift << 1;
 			5'b00010: output_shift = input_shift << 2;
 			5'b00011: output_shift = input_shift << 3;
@@ -63,6 +64,7 @@ always @* begin
 	end
 	else begin
 		case(shift_amount) 
+			5'b00000: output_shift = input_shift;
 			5'b00001: output_shift = input_shift >> 1;
 			5'b00010: output_shift = input_shift >> 2;
 			5'b00011: output_shift = input_shift >> 3;
