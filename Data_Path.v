@@ -33,11 +33,12 @@ module Data_Path(
     input [31:0] Instr,
     output wire [31:0] ALUResult,
     output wire [31:0] WriteData,
-    input [31:0] ReadData
+    input [31:0] ReadData,
+	 input MOVInstr
     );
 	 
 	 wire [31:0] PCnext, PCplus4, PCplus8;
-	 wire [31:0] ExtImm, SrcA, SrcB, Result;
+	 wire [31:0] ExtImm, RegAData, SrcA, SrcB, Result;
 	 wire [31:0] RA1, RA2;
 	 
 	 
@@ -84,7 +85,7 @@ module Data_Path(
 		.WD3(Result),
 		.R15(PCplus8),
 		.WE3(RegWrite),
-		.RD1(SrcA),
+		.RD1(RegAData),
 		.RD2(WriteData),
 		.CLK(CLK));
 	 
@@ -99,6 +100,13 @@ module Data_Path(
 		.IN_0(WriteData),
 		.IN_1(ExtImm),
 		.DAT_OUT(SrcB));
+
+	 MUX_2#(32) OperA_MUX(
+		.SEL(MOVInstr),
+		.IN_0(RegAData),
+		.IN_1(0),
+		.DAT_OUT(SrcA));
+	 
 	
 	 ALU alu_arm(
 		.OperA(SrcA),

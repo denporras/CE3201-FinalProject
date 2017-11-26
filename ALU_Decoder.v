@@ -23,13 +23,15 @@ module ALU_Decoder(
     input ALUOp,
     output reg [1:0] ALUControl,
     output reg [1:0] FlagW,
-	 output reg NoWrite
+	 output reg NoWrite,
+	 output reg MOVInstr
     );
 	 
 	 initial begin
 	 ALUControl = 0;
 	 FlagW = 0;
 	 NoWrite = 0;
+	 MOVInstr = 0;
 	 end
 	 
 	 always @*
@@ -41,6 +43,7 @@ module ALU_Decoder(
 							begin
 								ALUControl = 2;
 								NoWrite = 0;
+								MOVInstr = 0;
 								if(Funct40[0] == 0)
 										FlagW = 0;
 								else
@@ -50,6 +53,7 @@ module ALU_Decoder(
 							begin
 								ALUControl = 1;
 								NoWrite = 0;
+								MOVInstr = 0;
 								if(Funct40[0] == 0)
 										FlagW = 0;
 								else
@@ -59,6 +63,7 @@ module ALU_Decoder(
 							begin
 								ALUControl = 0;
 								NoWrite = 0;
+								MOVInstr = 0;
 								if(Funct40[0] == 0)
 										FlagW = 0;
 								else
@@ -69,11 +74,13 @@ module ALU_Decoder(
 								ALUControl = 1;
 								NoWrite = 1;
 								FlagW = 3;
+								MOVInstr = 0;
 							end
 						4'b1100 : //ORR
 							begin
 								ALUControl = 3;
 								NoWrite = 0;
+								MOVInstr = 0;
 								if(Funct40[0] == 0)
 										FlagW = 0;
 								else
@@ -83,6 +90,7 @@ module ALU_Decoder(
 							begin
 								ALUControl = 0;
 								NoWrite = 0;
+								MOVInstr = 1;
 								if(Funct40[0] == 0)
 										FlagW = 0;
 								else
@@ -93,8 +101,16 @@ module ALU_Decoder(
 								ALUControl = 0;
 								FlagW = 0;
 								NoWrite = 0;
+								MOVInstr = 0;
 							end
 					endcase
+				end
+			else
+				begin
+					ALUControl = 0;
+					FlagW = 0;
+					NoWrite = 0;
+					MOVInstr = 0;
 				end
 		end
 

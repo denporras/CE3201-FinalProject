@@ -25,6 +25,10 @@ module FlipFlop_r#(parameter WIDTH = 8)
     output reg [WIDTH-1:0] q
     );
 	 
+	 initial begin
+		q = -4;
+	 end
+	 
 	 always @(posedge CLK, posedge reset)
 		begin
 			if(reset)

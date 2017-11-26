@@ -44,8 +44,6 @@ module Processor_Test;
 
 	initial begin
 		// Initialize Inputs
-		reset = 1;
-		#0.5;
 		reset = 0;
 		
         
