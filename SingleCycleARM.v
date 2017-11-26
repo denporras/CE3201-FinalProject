@@ -30,7 +30,7 @@ module SingleCycleARM(
     );
 	 
 	 wire [3:0] ALUFlags;
-	 wire RegWrite, ALUSrc, MemtoReg, PCSrc, MOVInstr;
+	 wire RegWrite, ALUSrc, MemtoReg, PCSrc, MOVInstr, link;
 	 wire [1:0] RegSrc, ImmSrc, ALUControl;
 	
 	 
@@ -47,7 +47,8 @@ module SingleCycleARM(
 		.MemWrite(MemWrite),
 		.MemtoReg(MemtoReg),
 		.PCSrc(PCSrc),
-		.MOVInstr(MOVInstr));
+		.MOVInstr(MOVInstr),
+		.link(link));
 		
 	Data_Path dp(
 			.CLK(CLK),
@@ -65,7 +66,8 @@ module SingleCycleARM(
 			.ALUResult(ALUResult),
 			.WriteData(WriteData),
 			.ReadData(ReadData),
-			.MOVInstr(MOVInstr));
+			.MOVInstr(MOVInstr),
+			.link(link));
 
 
 endmodule

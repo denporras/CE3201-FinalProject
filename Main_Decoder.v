@@ -29,7 +29,8 @@ module Main_Decoder(
     output reg ALUSrc,
     output reg [1:0] ImmSrc,
     output reg [1:0] RegSrc,
-	 output reg ALUOp
+	 output reg ALUOp,
+	 output reg link
     );
 	 
 	initial begin
@@ -40,6 +41,7 @@ module Main_Decoder(
 	ALUSrc = 0;
 	ImmSrc = 0;
 	RegSrc = 0;
+	link = 0;
 	end
 	
 	always @*
@@ -55,6 +57,7 @@ module Main_Decoder(
 						RegW = 1;
 						RegSrc =  0;
 						ALUOp = 1;
+						link = 0;
 					end
 				else
 					begin
@@ -66,6 +69,7 @@ module Main_Decoder(
 						RegW = 1;
 						RegSrc =  0;
 						ALUOp = 1;
+						link = 0;
 					end
 				end
 			else
@@ -81,6 +85,7 @@ module Main_Decoder(
 									RegW = 0;
 									RegSrc =  2;
 									ALUOp = 0;
+									link = 0;
 								end
 							else
 								begin
@@ -92,6 +97,7 @@ module Main_Decoder(
 									RegW = 1;
 									RegSrc =  0;
 									ALUOp = 0;
+									link = 0;
 								end
 						end
 					else
@@ -106,6 +112,10 @@ module Main_Decoder(
 									RegW = 0;
 									RegSrc =  1;
 									ALUOp = 0;
+									if(Funct1 == 0)
+										link = 0;
+									else
+										link = 1;
 								end
 						end
 				end

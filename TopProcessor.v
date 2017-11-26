@@ -56,6 +56,9 @@ module TopProcessor(
 			
 	 Instruction_Memory imem(
 		.a(PC),
+		.CLK(0),
+		.WriteEnable(0),
+		.keyboard(0),
 		.rd(Instr));
 	
 	CLK1KHz a(

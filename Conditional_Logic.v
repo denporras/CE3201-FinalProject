@@ -28,9 +28,11 @@ module Conditional_Logic(
     input RegW,
     input MemW,
 	 input NoWrite,
+	 input in_link,
     output wire PCSrc,
     output wire RegWrite,
-    output wire MemWrite
+    output wire MemWrite,
+	 output wire link
     );
 	 
 	 wire [3:0] FlagWrite;
@@ -61,6 +63,7 @@ module Conditional_Logic(
 	 assign RegWrite = RegW & CondEx & ~NoWrite;
 	 assign MemWrite = MemW & CondEx;
 	 assign PCSrc = PCS & CondEx;
+	 assign link = in_link & CondEx;
 
 
 endmodule
