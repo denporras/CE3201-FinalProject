@@ -18,31 +18,21 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Keyboard_input(received_data, received_data_en, led1,led2,led3,led4, clk,ps2clk,ps2data);
+module Keyboard_input(received_data, received_data_en, clk, output_key, write_enable);
 	 
 input clk;
 input	[7:0]	received_data;
 input		 	received_data_en;
-input ps2clk;
-input ps2data;
-output led1;
-output led2;
-output led3;
-output led4;
 
-reg led1;
-reg led2;
-reg led3;
-reg led4;
+output write_enable;
+output [5:0]	output_key;
 
+reg write_enable;
 reg [7:0]	last_data_received;
-reg [7:0]	output_key;
+reg [5:0]	output_key;
+
 
 initial begin
-	led1 = 1;
-	led2 = 1;
-	led3 = 1;
-	led4 = 1;
 	last_data_received = 8'h00;
 end
 
@@ -57,123 +47,185 @@ end
 			 case(last_data_received)
 				8'h15://Q 
 				begin
-					output_key = 5'b10001;
+					write_enable = 1;
+					output_key = 6'b100011;
+					write_enable = 0;
 				end
 				8'h1d://W
 				begin
-					output_key = 5'b10111;
+					write_enable = 1;
+					output_key = 6'b101111;
+					write_enable = 0;
 				end
 				8'h24://E
 				begin
-					output_key = 5'b00101;
+					write_enable = 1;
+					output_key = 6'b001011;
+					write_enable = 0;
 				end
 				8'h2d://R
 				begin
-					output_key = 5'b10010;
+					write_enable = 1;
+					output_key = 6'b100101;
+					write_enable = 0;
 				end
 				8'h2c://T
 				begin
-					output_key = 5'b10100;
+					write_enable = 1;
+					output_key = 6'b101001;
+					write_enable = 0;
 				end
 				8'h35://Y
 				begin
-					output_key = 5'b11001;
+					write_enable = 1;
+					output_key = 6'b110011;
+					write_enable = 0;
 				end
 				8'h3c://U
 				begin
-					output_key = 5'b10101;
+					write_enable = 1;
+					output_key = 6'b101011;
+					write_enable = 0;
 				end
 				8'h43://I
 				begin
-					output_key = 5'b01100;
+					write_enable = 1;
+					output_key = 6'b011001;
+					write_enable = 0;
 				end
 				8'h44://O
 				begin
-					output_key = 5'b01111;
+					write_enable = 1;
+					output_key = 6'b011111;
+					write_enable = 0;
 				end
 				8'h4d://P
 				begin
-					output_key = 5'b10000;
+					write_enable = 1;
+					output_key = 6'b100001;
+					write_enable = 0;
 				end
 				8'h1c://A
 				begin
-					output_key = 5'b00001;
+					write_enable = 1;
+					output_key = 6'b000011;
+					write_enable = 0;
 				end
 				8'h1b://S
 				begin
-					output_key = 5'b10011;
+					write_enable = 1;
+					output_key = 6'b100111;
+					write_enable = 0;
 				end
 				8'h23://D
 				begin
-					output_key = 5'b00100;
+					write_enable = 1;
+					output_key = 6'b001001;
+					write_enable = 0;
 				end
 				8'h2b://F
 				begin
-					output_key = 5'b00110;
+					write_enable = 1;
+					output_key = 6'b001101;
+					write_enable = 0;
 				end
 				8'h34://G
 				begin
-					output_key = 5'b00111;
+					write_enable = 1;
+					output_key = 6'b001111;
+					write_enable = 0;
 				end
 				8'h33://H
 				begin
-					output_key = 5'b01000;
+					write_enable = 1;
+					output_key = 6'b010001;
+					write_enable = 0;
 				end
 				8'h3b://J 
 				begin
-					output_key = 5'b01010;
+					write_enable = 1;
+					output_key = 6'b010101;
+					write_enable = 0;
 				end
 				8'h42://K
 				begin
-					output_key = 5'b01011;
+					write_enable = 1;
+					output_key = 6'b010111;
+					write_enable = 0;
 				end
 				8'h4b://L 
 				begin
-					output_key = 5'b01100;
+					write_enable = 1;
+					output_key = 6'b011001;
+					write_enable = 0;
 				end
 				8'h1a://Z
 				begin
-					output_key = 5'b11010;
+					write_enable = 1;
+					output_key = 6'b110101;
+					write_enable = 0;
 				end
 				8'h22://X
 				begin
-					output_key = 5'b11000;
+					write_enable = 1;
+					output_key = 6'b110001;
+					write_enable = 0;
 				end
 				8'h21://C
 				begin
-					output_key = 5'b00011;
+					write_enable = 1;
+					output_key = 6'b000111;
+					write_enable = 0;
 				end
 				8'h2a://V
 				begin
-					output_key = 5'b10110;
+					write_enable = 1;
+					output_key = 6'b101101;
+					write_enable = 0;
 				end
 				8'h32://B
 				begin
-					output_key = 5'b00010;
+					write_enable = 1;
+					output_key = 6'b000101;
+					write_enable = 0;
 				end
 				8'h31://N
 				begin
-					output_key = 5'b01110;
+					write_enable = 1;
+					output_key = 6'b011101;
+					write_enable = 0;
 				end
 				8'h3a://M
 				begin
-					output_key = 5'b01101;
+					write_enable = 1;
+					output_key = 6'b011011;
+					write_enable = 0;
 				end
 				8'h66://BACKSPACE
 				begin
-					output_key = 5'b11111;
+					write_enable = 1;
+					output_key = 6'b111111;
+					write_enable = 0;
 				end
 				8'h29://SPACEBAR
 				begin
-					output_key = 5'b00000;
+					write_enable = 1;
+					output_key = 6'b000001;
+					write_enable = 0;
 				end
 				8'h5a://ENTER
 				begin
-					output_key = 5'b11110;
+					write_enable = 1;
+					output_key = 6'b111101;
+					write_enable = 0;
 				end
 				
 			 endcase
 		 end
+		 else
+			 begin
+				output_key = 6'b000000;
+			 end
 		end
 	 end
 

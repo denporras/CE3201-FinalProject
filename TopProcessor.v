@@ -40,6 +40,9 @@ module TopProcessor(
 			
 	 Instruction_Memory imem(
 		.a(PC),
+		.CLK(CLK),
+		.WriteEnable(write_enable),//KELVIN
+		.keyboard(output_key),//KELVIN
 		.rd(Instr));
 	
 	 Data_Memory dmem(
@@ -48,6 +51,109 @@ module TopProcessor(
 		.a(DataAdr),
 		.WD(WriteData),
 		.Rd(ReadData));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 //Keyboard
+	 wire	[7:0]	received_data;
+	 wire		 	received_data_en;
+	 wire nc;
+	 wire [5:0] output_key;
+	 wire write_enable;
+	 
+		
+	PS2_Controller controller(// Inputs
+		.CLOCK_50(CLK_50),
+		.reset(0),
+		.the_command(0),
+		.send_command(0),
+
+		// Bidirectionals
+		.PS2_CLK(PS2CLK),					// PS2 Clock
+		.PS2_DAT(PS2DAT),					// PS2 Data
+
+		// Outputs
+		.command_was_sent(nc),
+		.error_communication_timed_out(nc),
+
+		.received_data(received_data),
+		.received_data_en(received_data_en)			// If 1 - new data has been received)
+
+	);
+
+	Keyboard_input kb(
+		.clk(CLK_50),
+		.received_data(received_data), 
+		.received_data_en(received_data_en), 
+		.output_key(output_key),
+		.write_enable(write_enable)
+	);
+	
+	//End keyboard
 	 
 
 
