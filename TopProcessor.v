@@ -45,7 +45,7 @@ module TopProcessor(
 	 
 	 
 	 SingleCycleARM arm (
-			.CLK(clk1k),
+			.CLK(VCLK),
 			.reset(reset),
 			.PC(PC),
 			.Instr(Instr),
@@ -63,7 +63,7 @@ module TopProcessor(
 	.clk(clk1k));
 	
 	 Data_Memory dmem(
-		.CLK(clk1k),
+		.CLK(VCLK),
 		.WE(MemWrite),
 		.a(DataAdr),
 		.clkv(VCLK),

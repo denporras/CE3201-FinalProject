@@ -268,90 +268,90 @@ always @(posedge clk)
 		//Espacio
 		//A
 		if(data == 1 &&((hcount >= x+5 && hcount < x+30 && (vcount >= y && vcount < (y + WIDTH))) ||
-			((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+5 && vcount < y+35)) ||
-			(hcount >= x && hcount < x+35 && (vcount >= y+20 && vcount < (y+20 + WIDTH))) ||
+			((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+5 && vcount < y+35)) ||
+			(hcount >= x+1 && hcount < x+35 && (vcount >= y+20 && vcount < (y+20 + WIDTH))) ||
 			((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+35))))  
 			pixel <= 8'hFF;
 		else
 			begin
 		//B
-		if(data == 2 &&((hcount >= x && hcount < x+30 && (vcount >= y && vcount < (y + WIDTH))) ||
-				((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-				(hcount >= x && hcount < x+30 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+		if(data == 2 &&((hcount >= x+1 && hcount < x+30 && (vcount >= y && vcount < (y + WIDTH))) ||
+				((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+				(hcount >= x+1 && hcount < x+30 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 				((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+30)) ||
-				(hcount >= x && hcount < x+30 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
+				(hcount >= x+1 && hcount < x+30 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
 				pixel <= 8'hFF;
 			else
 				begin
 		//C
-				if(data == 3 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))))) 
+				if(data == 3 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))))) 
 					pixel <= 8'hFF;
 				else
 					begin
 				//D	
-				if(data == 4 && ((hcount >= x && hcount < x+30 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+30 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+				if(data == 4 && ((hcount >= x+1 && hcount < x+30 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+30 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+30)))) 
 					pixel <= 8'hFF;
 				else
 					begin
 					//E
-						if(data == 5 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
-					(hcount >= x && hcount < x+25 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
+						if(data == 5 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+					(hcount >= x+1 && hcount < x+25 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//F
-					if(data == 6 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
+					if(data == 6 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//G
-						if(data == 7 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+						if(data == 7 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+15 && vcount < y+30)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//H
-						if(data == 8 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
+						if(data == 8 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+35)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//I
-						if(data == 9 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-						(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+						if(data == 9 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+						(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y && vcount < y+35)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 							//J
-							if(data == 10 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-						(hcount >= x && hcount < x+20 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+15 && vcount < y+35)) ||
+							if(data == 10 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+						(hcount >= x+1 && hcount < x+20 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+15 && vcount < y+35)) ||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y && vcount < y+35)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//K
-						if(data == 11 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35))||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+						if(data == 11 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35))||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+5)) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
 					((hcount >= x+5 && hcount < (x+10 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
@@ -361,18 +361,18 @@ always @(posedge clk)
 					else
 						begin
 						//L
-						if(data == 12 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))))) 
+						if(data == 12 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//M
-						if(data == 13 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+						if(data == 13 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+0 && vcount < y+35)) ||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+5)) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20)))) 
@@ -380,10 +380,10 @@ always @(posedge clk)
 					else
 						begin
 						//N
-					if(data == 14 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					if(data == 14 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
@@ -394,25 +394,25 @@ always @(posedge clk)
 					else
 						begin
 						//O
-						if(data == 15 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+						if(data == 15 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+30)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//P
-						if(data == 16 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
+						if(data == 16 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+15)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//Q
-						if(data == 17 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+25)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+20 && vcount < (y+20 + WIDTH))) ||
+						if(data == 17 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+25)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+20 && vcount < (y+20 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+25)) ||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
@@ -421,38 +421,38 @@ always @(posedge clk)
 					else
 						begin
 						//R
-						if(data == 18 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+30 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
+						if(data == 18 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+30 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+5 && vcount < y+15)) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+20 && vcount < y+35)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//S
-						if(data == 19 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+15)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+						if(data == 19 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+15)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+15 && vcount < (y+15 + WIDTH))) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y+15 && vcount < y+30)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//T
-						if(data == 20 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+						if(data == 20 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y && vcount < y+35))))
 					pixel <= 8'hFF;
 					else
 						begin
 						//U
-						if(data == 21 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+						if(data == 21 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+30)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 						//V
-						if(data == 22 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+20)) ||
+						if(data == 22 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+20)) ||
 					(hcount >= x+15 && hcount < x+20 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					(hcount >= x+10 && hcount < x+15 && (vcount >= y+25 && vcount < (y+25 + WIDTH))) ||
 					(hcount >= x+20 && hcount < x+25 && (vcount >= y+25 && vcount < (y+25 + WIDTH))) ||
@@ -463,22 +463,22 @@ always @(posedge clk)
 					else
 						begin
 						//W
-						if(data == 23 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+						if(data == 23 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+35)) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+10 && vcount < y+30))||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+30)))) 
 					pixel <= 8'hFF;
 					else
 						begin
 							//X
-					if(data == 24 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+					if(data == 24 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+5)) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
@@ -493,7 +493,7 @@ always @(posedge clk)
 					((hcount >= x+20 && hcount < (x+20 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+25 && hcount < (x+25 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+30 && hcount < (x+30 + WIDTH)) && (vcount >= y && vcount < y+5)) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
@@ -502,9 +502,9 @@ always @(posedge clk)
 					else
 						begin
 						//Z
-						if(data == 26 && ((hcount >= x && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
-					(hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+						if(data == 26 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y && vcount < (y + WIDTH))) ||
+					(hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH))) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
@@ -515,7 +515,7 @@ always @(posedge clk)
 					else
 						begin
 						///
-						if(data == 27 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+						if(data == 27 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
@@ -526,11 +526,11 @@ always @(posedge clk)
 					else
 						begin
 						//>
-						if(data == 28 && (((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
+						if(data == 28 && (((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y+30 && vcount < y+35)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+25 && vcount < y+30))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+20 && vcount < y+25))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))||
-					((hcount >= x && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
+					((hcount >= x+1 && hcount < (x + WIDTH)) && (vcount >= y && vcount < y+5)) ||
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))))
@@ -538,7 +538,7 @@ always @(posedge clk)
 					else
 						begin
 						//_
-						if(data == 29 && ((hcount >= x && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH)))))
+						if(data == 29 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH)))))
 					pixel <= 8'hFF;
 					else
 						begin
