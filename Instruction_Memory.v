@@ -20,6 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Instruction_Memory(
     input [31:0] a,
+	 input CLK,
+	 input WriteEnable,
+	 input [5:0] keyboard,
     output reg [31:0] rd
     );
 	 
@@ -49,6 +52,15 @@ module Instruction_Memory(
 	 always @(a)
 		begin
 			rd = RAM[a/4];
+		end
+	
+	 always @(negedge CLK)
+		begin
+			if(WriteEnable)
+				begin
+					RAM[4] <= {{3'b110},keyboard[4:0],{3'b000}};
+					RAM[5] <= {{3'b110},keyboard[5],{3'b000}};
+				end
 		end
 	 
 endmodule
