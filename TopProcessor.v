@@ -21,11 +21,14 @@
 module TopProcessor(
     input CLK,
     input reset,
+	 output LED,
 	output vsync,
 	output hsync,
 	output [2:0] VGA_R,
 	output [2:0] VGA_G,
-	output [1:0] VGA_B	
+	output [1:0] VGA_B,
+	inout PS2DAT,
+	inout PS2CLK
     );
 	 
 		wire [31:0] PC, Instr, ReadData, DataAdr, WriteData,VideoData, VideoAdr;
@@ -41,11 +44,19 @@ module TopProcessor(
 		wire [9:0] VCOUNT;
 		wire [7:0] FINAL_PIXEL;
 		wire [7:0] scene_pixel;
-		wire clk1k;
+		wire clk50M;
+			
+		 //Keyboard
+	 wire	[7:0]	received_data;
+	 wire		 	received_data_en;
+	 wire nc;
+	 wire [5:0] output_key;
+	 wire write_enable;
+	
 	 
 	 
 	 SingleCycleARM arm (
-			.CLK(VCLK),
+			.CLK(clk50M),
 			.reset(reset),
 			.PC(PC),
 			.Instr(Instr),
@@ -56,17 +67,22 @@ module TopProcessor(
 			
 	 Instruction_Memory imem(
 		.a(PC),
-		.CLK(0),
-		.WriteEnable(0),
-		.keyboard(0),
+		.CLK(clk50M),
+		.WriteEnable(write_enable),//KELVIN
+		.keyboard(output_key),//KELVIN
+		//.WriteEnable(1),//KELVIN
+		//.keyboard(output_key),
+		//.keyboard(6'b100010),//KELVIN
+		
 		.rd(Instr));
 	
-	CLK1KHz a(
-   .clk_100mhz(CLK),
-	.clk(clk1k));
+	Clk_50MHz fd50M(
+  		.CLK(CLK),
+		.CLKOUT(clk50M));
+
 	
 	 Data_Memory dmem(
-		.CLK(VCLK),
+		.CLK(clk50M),
 		.WE(MemWrite),
 		.a(DataAdr),
 		.clkv(VCLK),
@@ -98,7 +114,36 @@ module TopProcessor(
 		.adr(VideoAdr),
 		.data(VideoData));
 		//.data(1));
-	 
+		
 
+	PS2_Controller ps2controller(// Inputs
+		.CLOCK_50(clk50M),
+		.reset(0),
+		.the_command(0),
+		.send_command(0),
 
+		// Bidirectionals
+		.PS2_CLK(PS2CLK),					// PS2 Clock
+		.PS2_DAT(PS2DAT),					// PS2 Data
+
+		// Outputs
+		.command_was_sent(nc),
+		.error_communication_timed_out(nc),
+
+		.received_data(received_data),
+		.received_data_en(received_data_en)			// If 1 - new data has been received)
+
+	);
+
+	Keyboard_input kb(
+		.clk(clk50M),
+		.received_data(received_data), 
+		.received_data_en(received_data_en), 
+		.output_key(output_key),
+		.write_enable(write_enable),
+		.LED(LED),
+		.pc(PC)
+	);
+	
+	//End keyboard
 endmodule

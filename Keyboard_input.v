@@ -18,163 +18,203 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Keyboard_input(received_data, received_data_en, led1,led2,led3,led4, clk,ps2clk,ps2data);
+module Keyboard_input(received_data, received_data_en, clk, output_key, write_enable,LED,pc);
 	 
 input clk;
 input	[7:0]	received_data;
 input		 	received_data_en;
-input ps2clk;
-input ps2data;
-output led1;
-output led2;
-output led3;
-output led4;
+input	[31:0]	pc;
+output LED;
 
-reg led1;
-reg led2;
-reg led3;
-reg led4;
+output write_enable;
+output [5:0]	output_key;
 
+reg write_enable;
 reg [7:0]	last_data_received;
-reg [7:0]	output_key;
+reg [5:0]	output_key;
+reg LED;
+reg flag;
 
 initial begin
-	led1 = 1;
-	led2 = 1;
-	led3 = 1;
-	led4 = 1;
 	last_data_received = 8'h00;
+	LED = 1;
+	output_key = 0;
+	flag = 0;
 end
 
  always @(posedge clk)
 	 begin
+	 
+	 write_enable = 0;
+	 if(flag == 1) begin
+		output_key = 0;
+		flag = 0;
+	 end
+	 
+	 
 	 if(received_data_en == 1'b1) begin
 		//led <= !led;
 		if(received_data != 8'hf0) begin
-			last_data_received = received_data;
+				last_data_received  =  received_data;
 		end
-		if(received_data != last_data_received) begin
-			 case(last_data_received)
-				8'h15://Q 
-				begin
-					output_key = 5'b10001;
-				end
-				8'h1d://W
-				begin
-					output_key = 5'b10111;
-				end
-				8'h24://E
-				begin
-					output_key = 5'b00101;
-				end
-				8'h2d://R
-				begin
-					output_key = 5'b10010;
-				end
-				8'h2c://T
-				begin
-					output_key = 5'b10100;
-				end
-				8'h35://Y
-				begin
-					output_key = 5'b11001;
-				end
-				8'h3c://U
-				begin
-					output_key = 5'b10101;
-				end
-				8'h43://I
-				begin
-					output_key = 5'b01100;
-				end
-				8'h44://O
-				begin
-					output_key = 5'b01111;
-				end
-				8'h4d://P
-				begin
-					output_key = 5'b10000;
-				end
-				8'h1c://A
-				begin
-					output_key = 5'b00001;
-				end
-				8'h1b://S
-				begin
-					output_key = 5'b10011;
-				end
-				8'h23://D
-				begin
-					output_key = 5'b00100;
-				end
-				8'h2b://F
-				begin
-					output_key = 5'b00110;
-				end
-				8'h34://G
-				begin
-					output_key = 5'b00111;
-				end
-				8'h33://H
-				begin
-					output_key = 5'b01000;
-				end
-				8'h3b://J 
-				begin
-					output_key = 5'b01010;
-				end
-				8'h42://K
-				begin
-					output_key = 5'b01011;
-				end
-				8'h4b://L 
-				begin
-					output_key = 5'b01100;
-				end
-				8'h1a://Z
-				begin
-					output_key = 5'b11010;
-				end
-				8'h22://X
-				begin
-					output_key = 5'b11000;
-				end
-				8'h21://C
-				begin
-					output_key = 5'b00011;
-				end
-				8'h2a://V
-				begin
-					output_key = 5'b10110;
-				end
-				8'h32://B
-				begin
-					output_key = 5'b00010;
-				end
-				8'h31://N
-				begin
-					output_key = 5'b01110;
-				end
-				8'h3a://M
-				begin
-					output_key = 5'b01101;
-				end
-				8'h66://BACKSPACE
-				begin
-					output_key = 5'b11111;
-				end
-				8'h29://SPACEBAR
-				begin
-					output_key = 5'b00000;
-				end
-				8'h5a://ENTER
-				begin
-					output_key = 5'b11110;
-				end
 				
-			 endcase
-		 end
+			if(received_data != last_data_received) begin
+				 case(last_data_received)
+					8'h15://Q 
+					begin
+						output_key = 6'b100011;
+						LED = !LED;
+					end
+					8'h1d://W
+					begin
+						output_key = 6'b101111;
+					end
+					8'h24://E
+					begin
+						output_key = 6'b001011;
+						
+					end
+					8'h2d://R
+					begin
+						output_key = 6'b100101;
+						
+					end
+					8'h2c://T
+					begin
+						output_key = 6'b101001;
+						
+					end
+					8'h35://Y
+					begin
+						output_key = 6'b110011;
+						
+					end
+					8'h3c://U
+					begin
+						output_key = 6'b101011;
+						
+					end
+					8'h43://I
+					begin
+						output_key = 6'b010011;
+						
+					end
+					8'h44://O
+					begin
+						output_key = 6'b011111;
+						
+					end
+					8'h4d://P
+					begin
+						output_key = 6'b100001;
+						
+					end
+					8'h1c://A
+					begin
+						output_key = 6'b000011;
+						
+					end
+					8'h1b://S
+					begin
+						output_key = 6'b100111;
+						
+					end
+					8'h23://D
+					begin
+						output_key = 6'b001001;
+						
+					end
+					8'h2b://F
+					begin
+						output_key = 6'b001101;
+						
+					end
+					8'h34://G
+					begin
+						output_key = 6'b001111;
+						
+					end
+					8'h33://H
+					begin
+						output_key = 6'b010001;
+						
+					end
+					8'h3b://J 
+					begin
+						output_key = 6'b010101;
+						
+					end
+					8'h42://K
+					begin
+						output_key = 6'b010111;
+						LED = !LED;
+					end
+					8'h4b://L 
+					begin
+						output_key = 6'b011001;
+						
+					end
+					8'h1a://Z
+					begin
+						output_key = 6'b110101;
+						
+					end
+					8'h22://X
+					begin
+						output_key = 6'b110001;
+						
+					end
+					8'h21://C
+					begin
+						output_key = 6'b000111;
+						
+					end
+					8'h2a://V
+					begin
+						
+						output_key = 6'b101101;
+						
+					end
+					8'h32://B
+					begin
+						output_key = 6'b000101;
+						
+					end
+					8'h31://N
+					begin
+						output_key = 6'b011101;
+						
+					end
+					8'h3a://M
+					begin
+						output_key = 6'b011011;
+						
+					end
+					8'h66://BACKSPACE
+					begin
+						output_key = 6'b111111;
+						
+					end
+					8'h29://SPACEBAR
+					begin
+						output_key = 6'b000001;
+						
+					end
+					8'h5a://ENTER
+					begin
+						output_key = 6'b111101;
+					end
+					
+				 endcase
+			 end
+		
 		end
+		
+		if(pc == 8'h38) begin
+			write_enable = 1;
+			flag = 1;
+		end
+		
 	 end
 
 endmodule

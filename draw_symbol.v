@@ -534,12 +534,12 @@ always @(posedge clk)
 					((hcount >= x+5 && hcount < (x+5 + WIDTH)) && (vcount >= y+5 && vcount < y+10))||
 					((hcount >= x+10 && hcount < (x+10 + WIDTH)) && (vcount >= y+10 && vcount < y+15))||
 					((hcount >= x+15 && hcount < (x+15 + WIDTH)) && (vcount >= y+15 && vcount < y+20))))
-					pixel <= 8'hFF;
+					pixel <= 8'h2C;
 					else
 						begin
 						//_
 						if(data == 29 && ((hcount >= x+1 && hcount < x+35 && (vcount >= y+30 && vcount < (y+30 + WIDTH)))))
-					pixel <= 8'hFF;
+					pixel <= 8'h2C;
 					else
 						begin
 						pixel <= 8'b0;

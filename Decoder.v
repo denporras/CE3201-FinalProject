@@ -41,6 +41,7 @@ module Decoder(
 	 Main_Decoder main (
 		.Op(Op),
 		.Funct5(Funct[5]),
+		.Funct4(Funct[4]),
 		.Funct1(Funct[0]),
 		.Branch(Branch),
 		.RegW(RegW),

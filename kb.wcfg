@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/daedgomez/Desarrollo/CommandLineInterface/pruebateclado_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="pruebateclado" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/pruebateclado/vsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vsync</obj_property>
+      <obj_property name="ObjectShortName">vsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/hsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hsync</obj_property>
+      <obj_property name="ObjectShortName">hsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/VGA_R" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">VGA_R[2:0]</obj_property>
+      <obj_property name="ObjectShortName">VGA_R[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/VGA_G" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">VGA_G[2:0]</obj_property>
+      <obj_property name="ObjectShortName">VGA_G[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/VGA_B" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">VGA_B[1:0]</obj_property>
+      <obj_property name="ObjectShortName">VGA_B[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/CLK" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/PS2DAT" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2DAT</obj_property>
+      <obj_property name="ObjectShortName">PS2DAT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/PS2CLK" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2CLK</obj_property>
+      <obj_property name="ObjectShortName">PS2CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/uut/kb/flag" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">flag</obj_property>
+      <obj_property name="ObjectShortName">flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/uut/kb/last_data_received" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">last_data_received[7:0]</obj_property>
+      <obj_property name="ObjectShortName">last_data_received[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/uut/kb/output_key" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">output_key[5:0]</obj_property>
+      <obj_property name="ObjectShortName">output_key[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/uut/kb/write_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">write_enable</obj_property>
+      <obj_property name="ObjectShortName">write_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/uut/kb/received_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">received_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">received_data[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pruebateclado/uut/kb/received_data_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">received_data_en</obj_property>
+      <obj_property name="ObjectShortName">received_data_en</obj_property>
+   </wvobject>
+</wave_config>

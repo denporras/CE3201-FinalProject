@@ -21,6 +21,7 @@
 module Main_Decoder(
     input [1:0] Op,
     input Funct5,
+	 input Funct4,
     input Funct1,
     output reg Branch,
     output reg RegW,
@@ -112,7 +113,7 @@ module Main_Decoder(
 									RegW = 0;
 									RegSrc =  1;
 									ALUOp = 0;
-									if(Funct1 == 0)
+									if(Funct4 == 0)
 										link = 0;
 									else
 										link = 1;
