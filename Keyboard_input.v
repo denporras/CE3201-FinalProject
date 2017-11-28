@@ -37,7 +37,7 @@ reg flag;
 
 initial begin
 	last_data_received = 8'h00;
-	LED = 1;
+	LED = 0;
 	output_key = 0;
 	flag = 0;
 end
@@ -63,7 +63,6 @@ end
 					8'h15://Q 
 					begin
 						output_key = 6'b100011;
-						LED = !LED;
 					end
 					8'h1d://W
 					begin
@@ -72,145 +71,116 @@ end
 					8'h24://E
 					begin
 						output_key = 6'b001011;
-						
 					end
 					8'h2d://R
 					begin
 						output_key = 6'b100101;
-						
 					end
 					8'h2c://T
 					begin
 						output_key = 6'b101001;
-						
 					end
 					8'h35://Y
 					begin
 						output_key = 6'b110011;
-						
 					end
 					8'h3c://U
 					begin
 						output_key = 6'b101011;
-						
 					end
 					8'h43://I
 					begin
 						output_key = 6'b010011;
-						
 					end
 					8'h44://O
 					begin
 						output_key = 6'b011111;
-						
 					end
 					8'h4d://P
 					begin
 						output_key = 6'b100001;
-						
 					end
 					8'h1c://A
 					begin
 						output_key = 6'b000011;
-						
 					end
 					8'h1b://S
 					begin
 						output_key = 6'b100111;
-						
 					end
 					8'h23://D
 					begin
 						output_key = 6'b001001;
-						
 					end
 					8'h2b://F
 					begin
 						output_key = 6'b001101;
-						
 					end
 					8'h34://G
 					begin
 						output_key = 6'b001111;
-						
 					end
 					8'h33://H
 					begin
 						output_key = 6'b010001;
-						
 					end
 					8'h3b://J 
 					begin
 						output_key = 6'b010101;
-						
 					end
 					8'h42://K
 					begin
 						output_key = 6'b010111;
-						LED = !LED;
 					end
 					8'h4b://L 
 					begin
 						output_key = 6'b011001;
-						
 					end
 					8'h1a://Z
 					begin
 						output_key = 6'b110101;
-						
 					end
 					8'h22://X
 					begin
 						output_key = 6'b110001;
-						
 					end
 					8'h21://C
 					begin
 						output_key = 6'b000111;
-						
 					end
 					8'h2a://V
 					begin
-						
 						output_key = 6'b101101;
-						
 					end
 					8'h32://B
 					begin
 						output_key = 6'b000101;
-						
 					end
 					8'h31://N
 					begin
 						output_key = 6'b011101;
-						
 					end
 					8'h3a://M
 					begin
 						output_key = 6'b011011;
-						
 					end
 					8'h66://BACKSPACE
 					begin
 						output_key = 6'b111111;
-						
 					end
 					8'h29://SPACEBAR
 					begin
 						output_key = 6'b000001;
-						
 					end
 					8'h5a://ENTER
 					begin
 						output_key = 6'b111101;
 					end
-					
 				 endcase
 			 end
-		
 		end
 		
-		if(pc == 8'h38) begin
+		if(pc == 8'h3C) begin
 			write_enable = 1;
 			flag = 1;
 		end
